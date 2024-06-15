@@ -1,4 +1,4 @@
-package com.fpnews
+package com.agma.fpnews
 
 import android.app.Application
 import com.facebook.react.PackageList

@@ -1,0 +1,18 @@
+// Install Code Spell Checker Extension
+{
+  // language - current active spelling language
+  "language": "en",
+  // words - list of words to be always considered correct
+  "words": [
+    "killall",
+    "fpnews",
+    "gradlew",
+    "gbenga",
+    "xcodebuild",
+    "xcworkspace",
+    "codegen",
+    "reduxjs"
+  ],
+  // flagWords - list of words to be always considered incorrect
+  "flagWords": []
+}
