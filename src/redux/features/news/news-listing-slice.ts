@@ -1,9 +1,9 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { INewsListing } from 'src/interface/news';
 import { RootState } from 'src/redux/store';
+import { UINewsListing } from 'src/domain/news/types';
 
 export interface newsState {
-  data: INewsListing[];
+  data: UINewsListing[];
   page: {
     total_pages: number;
     current_page: number;
