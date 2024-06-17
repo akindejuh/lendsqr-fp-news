@@ -1,8 +1,8 @@
 import React from 'react';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { RootStackParamList } from './types';
-import AuthStack from './main/auth-stack';
-import AppStack from './main/app-stack';
+import AuthStack from './auth-stack';
+import AppStack from './app-stack';
 
 const Root = createNativeStackNavigator<RootStackParamList>();
 

@@ -21,10 +21,6 @@ export type AuthStackParamList = {
 };
 
 export type AppStackParamList = {
-  NewsStack: NavigatorScreenParams<NewsStackParamsList> | undefined;
-};
-
-export type NewsStackParamsList = {
   NewsListingScreen: undefined;
   NewsDetailsScreen: undefined;
 };
@@ -38,12 +34,6 @@ export type AuthStackScreenProps<Screen extends keyof AuthStackParamList> =
 export type AppStackScreenProps<Screen extends keyof AppStackParamList> =
   CompositeScreenProps<
     NativeStackScreenProps<AppStackParamList, Screen>,
-    NativeStackScreenProps<RootStackParamList>
-  >;
-
-export type NewsStackScreenProps<Screen extends keyof NewsStackParamsList> =
-  CompositeScreenProps<
-    NativeStackScreenProps<NewsStackParamsList, Screen>,
     NativeStackScreenProps<RootStackParamList>
   >;
 

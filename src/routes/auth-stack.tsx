@@ -1,7 +1,7 @@
 import React from 'react';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import { AuthStackParamList } from '../types';
-import { authRoutes } from '../routes';
+import { AuthStackParamList } from './types';
+import { authRoutes } from './routes';
 
 const Auth = createNativeStackNavigator<AuthStackParamList>();
 

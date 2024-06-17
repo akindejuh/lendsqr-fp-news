@@ -1,14 +1,14 @@
 import React from 'react';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import { AppStackParamList } from '../types';
-import { appRoutes } from '../routes';
+import { AppStackParamList } from './types';
+import { appRoutes } from './routes';
 
 const App = createNativeStackNavigator<AppStackParamList>();
 
 export default function AppStack(): React.JSX.Element | null {
   return (
     <App.Navigator
-      initialRouteName={'NewsStack'}
+      initialRouteName={'NewsListingScreen'}
       screenOptions={{
         headerShown: false,
       }}>

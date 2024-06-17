@@ -1,9 +1,15 @@
-interface User {
-  id: string;
+interface PageReq {
+  search: string;
+  page: string;
+}
+
+interface PageRes<T> {
+  items: T[];
+  page: { total_page: number; current_page: number; next_page: number };
 }
 
 interface ServerResponse<T> {
-  status: number;
+  ok: number;
   msg?: string;
   data?: T;
 }
