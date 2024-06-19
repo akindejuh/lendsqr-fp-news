@@ -5,16 +5,27 @@
  * @format
  */
 
-import React, { FunctionComponent } from 'react';
+import React, { FunctionComponent, useEffect } from 'react';
+import { Platform } from 'react-native';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
 import { NavigationContainer } from '@react-navigation/native';
-import RootStack from './src/routes/root-stack';
 import SplashScreen from 'react-native-splash-screen';
-import { Platform } from 'react-native';
 import { Provider } from 'react-redux';
-import store from './src/redux/store';
+import RootStack from 'src/routes/root-stack';
+import store from 'src/redux/store';
+import { getNewsListing } from 'src/domain/news';
+import { requestAndroidNotifications } from 'src/utils/android-notifications';
 
 const App: FunctionComponent = () => {
+  useEffect(() => {
+    // This is used here because I used a server that spins down after a period of inactivity
+    getNewsListing({
+      page: '1',
+      search: '',
+    });
+    requestAndroidNotifications();
+  }, []);
+
   return (
     <SafeAreaProvider>
       <NavigationContainer

@@ -22,7 +22,9 @@ export type AuthStackParamList = {
 
 export type AppStackParamList = {
   NewsListingScreen: undefined;
-  NewsDetailsScreen: undefined;
+  NewsDetailsScreen: {
+    news_id: string;
+  };
 };
 
 export type AuthStackScreenProps<Screen extends keyof AuthStackParamList> =

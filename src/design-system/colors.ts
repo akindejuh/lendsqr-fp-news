@@ -3,7 +3,7 @@ const isDarkMode = Appearance.getColorScheme() === 'dark';
 
 export const colors = {
   background: isDarkMode ? '#0f0f0f' : '#fafafa',
-  primary: '#0f9932',
+  primary: '#f06c62',
   secondary: '#b800b8',
   grayText: isDarkMode ? '#fafafa' : '#3f3f3f',
   white: '#ffffff',

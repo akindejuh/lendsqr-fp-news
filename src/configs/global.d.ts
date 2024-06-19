@@ -14,6 +14,12 @@ interface ServerResponse<T> {
   data?: T;
 }
 
+interface FetchState {
+  isLoading: boolean;
+  isError: boolean;
+  error: string;
+}
+
 declare namespace NodeJS {
   interface ProcessEnv {
     API_BASE_URL: string;

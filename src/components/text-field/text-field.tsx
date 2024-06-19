@@ -22,11 +22,11 @@ export function TextField({
   const CONTAINER: ViewStyle = {
     alignItems: 'center',
     flexDirection: 'row',
-    borderRadius: props.borderRadius || 11,
+    borderRadius: props.borderRadius || 8,
     backgroundColor: colors.inputBackground,
     minHeight: defaultHeight,
     opacity: editable ? 1 : 0.5,
-    paddingHorizontal: 18,
+    paddingHorizontal: 12,
     ...props,
   };
 

@@ -1,10 +1,12 @@
 import { StyleProp, ViewStyle } from 'react-native';
 import { SvgProps } from 'react-native-svg';
 
+import googleLogo from '../../assets/svg/google-logo.svg';
 import pwdOff from '../../assets/svg/pwd-off.svg';
 import pwdOn from '../../assets/svg/pwd-on.svg';
 
 export const ICONS = {
+  'google-logo': googleLogo,
   'pwd-off': pwdOff,
   'pwd-on': pwdOn,
 };

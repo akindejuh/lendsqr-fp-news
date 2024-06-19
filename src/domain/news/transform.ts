@@ -13,7 +13,7 @@ export function transformNewsListings(
     title: item?.title,
     image_url: item?.imageUrl,
     topic: item?.topic,
-    publication_date: new Date(item?.published),
+    publication_date: item?.published,
     author: item?.author,
   }));
 }

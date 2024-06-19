@@ -1,9 +1,11 @@
 import { combineReducers, configureStore } from '@reduxjs/toolkit';
-import newsSlice from './features/news/news-listing-slice';
 import { useDispatch, useSelector } from 'react-redux';
+import newsListingSlice from './slice/news/listing-slice';
+import newsDetailSlice from './slice/news/detail-slice';
 
 const rootReducer = combineReducers({
-  news: newsSlice,
+  newsListing: newsListingSlice,
+  newsDetail: newsDetailSlice,
 });
 
 const store = configureStore({

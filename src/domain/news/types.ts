@@ -5,7 +5,7 @@ export interface UINewsListing {
   image_url: string;
   topic: string;
   author: string;
-  publication_date: Date;
+  publication_date: string;
 }
 export interface ServerNewsListing {
   _id: string;
@@ -17,9 +17,7 @@ export interface ServerNewsListing {
 }
 export interface GetNewsListRequest extends PageReq {}
 export interface GetNewsListResponse
-  extends ServerResponse<{
-    data: PageRes<ServerNewsListing>;
-  }> {}
+  extends ServerResponse<PageRes<ServerNewsListing>> {}
 
 // News Detail
 export interface UINewsDetail {
@@ -48,4 +46,4 @@ export interface GetNewsDetailRequest {
   news_id: string;
 }
 export interface GetNewsDetailResponse
-  extends ServerResponse<{ data: ServerNewsDetail }> {}
+  extends ServerResponse<ServerNewsDetail> {}
