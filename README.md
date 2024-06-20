@@ -31,31 +31,37 @@ Below are the features of FP News:
 
 ## Installation
 Clone the repo
+
 ```sh
 git clone https://github.com/gbenga2540/lendsqr-fp-news.git
 ```
 
 Navigate into the folder
+
 ```sh
 cd lendsqr-fp-news
 ```
 
 Install Packages using Yarn
+
 ```sh
 yarn install
 ```
 
 Install iOS Pods
+
 ```sh
 yarn pod:install
 ```
 
 Run on Android Emulator or Device
+
 ```sh
 yarn android
 ```
 
 Run on iOS Simulator or Device
+
 ```sh
 yarn ios
 ```
