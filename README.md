@@ -1,18 +1,14 @@
 # FP News - Implementation Plan Documentation
- FP News is a minimalistic news application that's set up using a Bare React Native Project. This document details the steps involved in creating the application, which include the environment setup, development, Rapid REST API integration, Google Auth, project management using Notion, testing, deployment and Firebase.
+ FP News is a minimalistic news application that's set up using a Bare React Native Project. This document details the steps involved in creating the application, which include the environment setup, development, REST API integration, Google Auth, project management using Notion, testing, deployment and Firebase.
 
 ## Table of Contents
+* [Demo](#demo)
+* [Main Features](#features)
+* [Installation](#installation)
+* [Download](#downloads)
 
-* [Main Features](#Features)
-* [Installation](#Installation)
-* [Download the React Native APK Test App]()
-* [Tech Stack](#Tech%Stack)
-
-
-
-* [Screenshots](#Screenshots)
-
-
+## Demo
+[Demo:](https://drive.google.com/file/d/1TfhEfKXeO-hT0AU7JVnBMFwgfYZwmE-N/view?usp=sharing)
 
 ## Features
 Below are the main features of FP News:
@@ -22,9 +18,7 @@ Below are the main features of FP News:
 * Performance
 * Remote-config
 * Messaging
-- Middleware to log all user activities and screen change using Firebase event
-- A button that throws a runtime error when pressed.
-- Goggle sign in feature 
+* Analytics
 - Implemented light and dark mode feature 
 - Added logout feature
 
@@ -42,35 +36,6 @@ yarn android #command to run on Android Emulator
 yarn ios #command to run on iOS Simulator
 ```
     
-## Download the apk via Firebase app tester
-
-- [Android APK: ](https://appdistribution.firebase.dev/i/878df552558db865)
-
-## Download the apk via google drive
-
--[Android APK: ](https://drive.google.com/file/d/1N6kp6NwcocgqQCCykseNG1k8PO9k5fKX/view?usp=sharing)
-
-
-## Tech Stack
-
-**Client:** Bare React-Native, Redux Toolkit, Codepush, Firebase
-
-**Server:** RapidAPI endpoint
-
-## Screenshots
-
-- Login screen
-![](/src/assets/images/signin.jpg)
-
-- Signup screen
-![](/src/assets/images/signup.jpg)
-
-- News Listing screen
-![](/src/assets/images/newslist.jpg)
-
-- News Details Screen
-![](/src/assets/images/newsdetail.jpg)
-
-- Log Out 
-![](/src/assets/images/logout.jpg)
-
+## Downloads
+- [Firebase](https://appdistribution.firebase.dev/i/0fd480240967c6b2)
+- [Google Drive](https://drive.google.com/file/d/13AIVfueEaT3VtBVPGe374Jh3yzp_rjxg/view?usp=share_link)
