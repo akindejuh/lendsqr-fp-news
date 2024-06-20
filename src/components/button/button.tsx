@@ -47,7 +47,7 @@ export function Button(props: ButtonProps): React.JSX.Element {
       disabled={props.disabled || isLoading}
       {...rest}>
       {isLoading ? (
-        <ActivityIndicator color={colors.white} />
+        <ActivityIndicator color={colors().white} />
       ) : (
         children || <Text style={textStyles}>{text}</Text>
       )}

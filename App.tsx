@@ -6,7 +6,7 @@
  */
 
 import React, { FunctionComponent, useEffect, useRef } from 'react';
-import { ActivityIndicator, Appearance, Platform } from 'react-native';
+import { ActivityIndicator, Platform } from 'react-native';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
 import { NavigationContainer } from '@react-navigation/native';
 import SplashScreen from 'react-native-splash-screen';
@@ -25,6 +25,7 @@ import { AuthConfigProvider } from 'src/context/auth-config/auth-config';
 import { PersistGate } from 'redux-persist/integration/react';
 import { View } from 'src/components';
 import { setupGoogleSignIn } from 'src/configs/google';
+import { colors } from 'src/design-system';
 
 const App: FunctionComponent = () => {
   const navigationRef: any = useRef();
@@ -39,9 +40,6 @@ const App: FunctionComponent = () => {
       search: '',
     });
     requestAndroidNotifications();
-
-    // TODO: Color Scheme
-    Appearance.setColorScheme('light');
   }, []);
 
   return (
@@ -77,7 +75,7 @@ const App: FunctionComponent = () => {
                         flex={1}
                         justifyContent="center"
                         alignItems="center">
-                        <ActivityIndicator />
+                        <ActivityIndicator color={colors().grayText} />
                       </View>
                     }
                     persistor={persistor}

@@ -31,7 +31,7 @@ export function NewsListingComp(props: UINewsListing): React.JSX.Element {
       onPress={() => navToNewsDetailsScreen(props.id)}
       borderRadius={8}
       height={'auto'}
-      backgroundColor={colors.transparent}>
+      backgroundColor={colors().transparent}>
       <View flexDirection="row" justifyContent="space-between">
         <View flex={1} paddingHorizontal={10} paddingVertical={5}>
           <Text

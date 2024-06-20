@@ -11,11 +11,11 @@ export function BackButton() {
     <Button
       justifyContent="center"
       alignItems="center"
-      backgroundColor={colors.transparent}
+      backgroundColor={colors().transparent}
       height={42}
       width={42}
       borderRadius={8}
-      borderColor={colors.inputPLText}
+      borderColor={colors().inputPLText}
       borderWidth={1}
       onPress={() => navigation.canGoBack() && navigation.goBack()}
       children={
@@ -23,7 +23,7 @@ export function BackButton() {
           size={20}
           name={'back-arrow'}
           style={ICON}
-          color={colors.inputPLText}
+          color={colors().inputPLText}
         />
       }
     />
@@ -31,5 +31,5 @@ export function BackButton() {
 }
 
 const ICON = {
-  color: colors.inputPLText,
+  color: colors().inputPLText,
 } as ViewStyle;

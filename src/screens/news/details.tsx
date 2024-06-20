@@ -59,7 +59,7 @@ const NewsDetailsScreen: FunctionComponent = (): React.JSX.Element => {
 
   const contentStyle = {
     p: {
-      color: colors.grayText,
+      color: colors().grayText,
       fontFamily: fonts.primaryFont_400,
       marginTop: 0,
     },
@@ -113,7 +113,7 @@ const NewsDetailsScreen: FunctionComponent = (): React.JSX.Element => {
 
         <Button
           onPress={shareNews}
-          backgroundColor={colors.transparent}
+          backgroundColor={colors().transparent}
           width={50}
           alignItems="flex-end"
           children={<Icon name="share" size={20} style={ICON} />}
@@ -134,7 +134,7 @@ const NewsDetailsScreen: FunctionComponent = (): React.JSX.Element => {
 
       {isLoading && !isError && (
         <View flex={1} justifyContent="center" alignItems="center">
-          <ActivityIndicator color={colors.grayText} />
+          <ActivityIndicator color={colors().grayText} />
         </View>
       )}
 
@@ -170,10 +170,10 @@ const NewsDetailsScreen: FunctionComponent = (): React.JSX.Element => {
               text={author}
               fontSize={14}
               fontFamily={fonts.primaryFont_500}
-              color={colors.secondary}
+              color={colors().secondary}
             />
             <View flexDirection="row" alignItems="center">
-              <Text text={'Score: '} fontSize={14} color={colors.linkText} />
+              <Text text={'Score: '} fontSize={14} color={colors().linkText} />
               <Text
                 text={`${Math.round(audience_score)}%`}
                 fontSize={14}
@@ -218,5 +218,5 @@ const NewsDetailsScreen: FunctionComponent = (): React.JSX.Element => {
 export default NewsDetailsScreen;
 
 const ICON = {
-  color: colors.inputPLText,
+  color: colors().inputPLText,
 } as ViewStyle;

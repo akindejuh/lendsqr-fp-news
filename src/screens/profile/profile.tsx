@@ -1,4 +1,4 @@
-import React, { FunctionComponent } from 'react';
+import React, { FunctionComponent, useState } from 'react';
 import { Alert, Platform, TextStyle } from 'react-native';
 import { fonts } from 'src/assets/fonts/fonts';
 import { Button, Image, Screen, Text, View } from 'src/components';
@@ -8,10 +8,15 @@ import auth from '@react-native-firebase/auth';
 import { GoogleSignin } from '@react-native-google-signin/google-signin';
 import analytics from '@react-native-firebase/analytics';
 import { images } from 'src/assets/images/images';
+import { useAppDispatch } from 'src/redux/store';
+import { IThemeState, setTheme } from 'src/redux/slice/theme/theme-slice';
 
 const ProfileScreen: FunctionComponent = () => {
+  const dispatch = useAppDispatch();
   const authStatus = useAuth();
   const userInfo = authStatus?.user;
+
+  const [changedTheme, setChangedTheme] = useState<boolean>(false);
 
   const signUserOut = async () => {
     // await GoogleSignin.revokeAccess();
@@ -42,13 +47,29 @@ const ProfileScreen: FunctionComponent = () => {
     );
   };
 
+  const onChangeTheme = (theme: IThemeState['theme']) => {
+    dispatch(setTheme(theme));
+    setChangedTheme(true);
+  };
+
   return (
     <Screen preset="fixed">
-      <View marginTop={Platform.OS === 'ios' ? 20 : 10}>
+      <View
+        flexDirection="row"
+        alignItems="center"
+        justifyContent="space-between"
+        marginTop={Platform.OS === 'ios' ? 20 : 10}>
         <Text
           text="Your Profile"
           fontSize={20}
           fontFamily={fonts.primaryFont_700}
+        />
+
+        <Button
+          preset="link"
+          text="Logout"
+          textStyle={LOG_OUT}
+          onPress={onLogout}
         />
       </View>
       <View
@@ -59,7 +80,7 @@ const ProfileScreen: FunctionComponent = () => {
         borderWidth={2}
         borderRadius={200}
         padding={3}
-        borderColor={colors.primary}>
+        borderColor={colors().primary}>
         <Image
           sourceFile={
             userInfo?.photoURL
@@ -89,13 +110,47 @@ const ProfileScreen: FunctionComponent = () => {
         fontSize={14}
       />
 
-      <Button
-        preset="link"
-        text="Logout"
-        marginTop={40}
-        textStyle={LOG_OUT}
-        onPress={onLogout}
+      <Text
+        text="Select Theme"
+        fontSize={18}
+        fontFamily={fonts.primaryFont_700}
+        marginTop={70}
+        marginBottom={1}
       />
+      <View
+        alignItems="flex-start"
+        height={100}
+        justifyContent="space-between"
+        // flexDirection="column"
+        // justifyContent="space-between"
+        // width={200}
+      >
+        <Button
+          text="System"
+          preset="link"
+          onPress={() => onChangeTheme('system')}
+        />
+        <Button
+          text="Light"
+          preset="link"
+          onPress={() => onChangeTheme('light')}
+        />
+        <Button
+          text="Dark"
+          preset="link"
+          onPress={() => onChangeTheme('dark')}
+        />
+      </View>
+
+      {changedTheme && (
+        <Text
+          text="Please, re-start to update your theme!"
+          fontSize={15}
+          fontFamily={fonts.primaryFont_400}
+          marginTop={10}
+          color={colors().primary}
+        />
+      )}
     </Screen>
   );
 };

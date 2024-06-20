@@ -12,10 +12,10 @@
     "xcworkspace",
     "codegen",
     "reduxjs",
-    "Crashlystics",
     "crashlystics",
     "persistor",
-    "signin"
+    "signin",
+    "yhup"
   ],
   // flagWords - list of words to be always considered incorrect
   "flagWords": []

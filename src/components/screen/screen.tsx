@@ -20,7 +20,7 @@ function ScreenWithoutScrolling(props: ScreenProps) {
   const preset = presets.fixed;
 
   const backgroundStyle: ViewStyle = {
-    backgroundColor: colors.background,
+    backgroundColor: colors().background,
   };
 
   const screenStyle: ViewStyle = {
@@ -43,7 +43,7 @@ function ScreenWithoutScrolling(props: ScreenProps) {
             ? 'light-content'
             : 'dark-content'
         }
-        backgroundColor={colors.background}
+        backgroundColor={colors().background}
         {...props.statusBarProps}
       />
       <View testID={props.testID} />
@@ -69,7 +69,7 @@ function ScreenWithScrolling(props: ScreenProps) {
   const insets = useSafeAreaInsets();
   const preset = presets.scroll;
   const backgroundStyle: ViewStyle = {
-    backgroundColor: props.backgroundColor || colors.background,
+    backgroundColor: props.backgroundColor || colors().background,
   };
 
   const insetStyle: ViewStyle = {
@@ -95,7 +95,7 @@ function ScreenWithScrolling(props: ScreenProps) {
             ? 'light-content'
             : 'dark-content'
         }
-        backgroundColor={colors.background}
+        backgroundColor={colors().background}
         {...props.statusBarProps}
       />
       <View

@@ -1,11 +1,11 @@
 import { createSlice } from '@reduxjs/toolkit';
 import { RootState } from 'src/redux/store';
 
-interface ThemeState {
+export interface IThemeState {
   theme: 'light' | 'dark' | 'system';
 }
 
-const initialState: ThemeState = {
+const initialState: IThemeState = {
   theme: 'system',
 };
 
@@ -13,7 +13,7 @@ const themeSlice = createSlice({
   name: 'theme',
   initialState,
   reducers: {
-    setTheme: (state, { payload }: { payload: ThemeState['theme'] }) => {
+    setTheme: (state, { payload }: { payload: IThemeState['theme'] }) => {
       state.theme = payload;
     },
   },

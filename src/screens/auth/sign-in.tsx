@@ -80,8 +80,12 @@ const SignInScreen: FunctionComponent = (): React.JSX.Element => {
     return (
       <Screen preset="fixed">
         <View flex={1} justifyContent="center" alignItems="center">
-          <Text text="Signing In..." marginBottom={4} color={colors.linkText} />
-          <ActivityIndicator />
+          <Text
+            text="Signing In..."
+            marginBottom={4}
+            color={colors().linkText}
+          />
+          <ActivityIndicator color={colors().grayText} />
         </View>
       </Screen>
     );
@@ -141,13 +145,13 @@ const SignInScreen: FunctionComponent = (): React.JSX.Element => {
 
       <Button
         onPress={initGoogleSignInUser}
-        backgroundColor={colors.transparent}
+        backgroundColor={colors().transparent}
         borderWidth={1}
         borderRadius={6}
         height={50}
         justifyContent="center"
         alignItems="center"
-        borderColor={colors.inputBackground}
+        borderColor={colors().inputBackground}
         flexDirection="row">
         <Icon name="google-logo" size={24} />
         <Text text="Sign in to Google" marginLeft={5} />

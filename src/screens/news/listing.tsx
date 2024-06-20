@@ -96,7 +96,7 @@ const NewsListingScreen: FunctionComponent = (): React.JSX.Element => {
   const renderListFooterComp = (): React.JSX.Element => {
     return (
       <View>
-        <ActivityIndicator />
+        <ActivityIndicator color={colors().grayText} />
       </View>
     );
   };
@@ -143,7 +143,7 @@ const NewsListingScreen: FunctionComponent = (): React.JSX.Element => {
 
       {isLoading && data_items_memo?.length === 0 && !isError && (
         <View flex={1} justifyContent="center" alignItems="center">
-          <ActivityIndicator color={colors.grayText} />
+          <ActivityIndicator color={colors().grayText} />
         </View>
       )}
 

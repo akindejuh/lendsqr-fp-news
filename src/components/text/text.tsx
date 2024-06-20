@@ -6,7 +6,7 @@ import { fonts } from 'src/assets/fonts/fonts';
 
 export function Text({ text, ...props }: TextProps): React.JSX.Element {
   const TEXT: TextStyle = {
-    color: colors.grayText,
+    color: colors().grayText,
     fontFamily: fonts.primaryFont_400,
     ...props,
     fontSize: getComputedWidth(props.fontSize || 16),

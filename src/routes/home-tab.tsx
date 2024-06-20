@@ -13,7 +13,7 @@ export default function HomeTab() {
       screenOptions={{
         headerShown: false,
         // tabBarShowLabel: false,
-        tabBarActiveTintColor: colors.primary,
+        tabBarActiveTintColor: colors().primary,
       }}>
       {homeTabRoutes.map((screen, index) => {
         return (

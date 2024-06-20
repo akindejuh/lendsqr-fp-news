@@ -11,14 +11,14 @@ export function Divider({
   ...rest
 }: DividerProps): React.JSX.Element {
   const overrideTextStyle: TextStyle = {
-    color: colors.grayText,
+    color: colors().grayText,
     marginHorizontal: 10,
     ...textStyle,
   };
 
   const overrideDividerStyle: ViewStyle = {
     height: 2,
-    backgroundColor: colors.inputBackground,
+    backgroundColor: colors().inputBackground,
     flex: 1,
     ...dividerStyle,
   };
