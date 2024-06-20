@@ -3,7 +3,7 @@ export * from './button/button';
 export * from './divider/divider';
 export * from './icon/icon';
 export * from './image/image';
-export * from './news-listing/news-listing';
+export * from './news-listing/news-listing-comp';
 export * from './screen/screen';
 export * from './text/text';
 export * from './view/view';

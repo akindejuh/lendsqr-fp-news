@@ -105,7 +105,7 @@ const NewsDetailsScreen: FunctionComponent = (): React.JSX.Element => {
     <Screen baseAllowance={10}>
       <View
         marginBottom={5}
-        marginTop={Platform.OS === 'ios' ? 10 : 30}
+        marginTop={Platform.OS === 'ios' ? 10 : 20}
         flexDirection="row"
         justifyContent="space-between"
         alignItems="center">

@@ -1,4 +1,4 @@
-import { ComponentType } from 'react';
+import React, { ComponentType } from 'react';
 import { NativeStackNavigationOptions } from '@react-navigation/native-stack';
 
 import {
@@ -19,6 +19,10 @@ import NewsDetailsScreen from 'src/screens/news/news-details';
 import NewsListingScreen from 'src/screens/news/news-listing';
 import ProfileScreen from 'src/screens/profile/profile';
 import { BottomTabNavigationOptions } from '@react-navigation/bottom-tabs';
+import { Icon, Image, View } from 'src/components';
+import { images } from 'src/assets/images/images';
+import { colors } from 'src/design-system';
+import { ViewStyle } from 'react-native';
 
 interface Route<List extends Record<string, object | undefined>> {
   name: keyof List;
@@ -42,15 +46,59 @@ export const appRoutes: Array<Route<AppStackParamList>> = [
   { name: 'NewsDetailsScreen', component: NewsDetailsScreen },
 ];
 
-export const homeTabRoutes: Array<BottomTabRoute> = [
-  {
-    name: 'NewsListingScreen',
-    component: NewsListingScreen,
-    options: { tabBarLabel: 'News' },
-  },
-  {
-    name: 'ProfileScreen',
-    component: ProfileScreen,
-    options: { tabBarLabel: 'Profile' },
-  },
-];
+export const homeTabRoutes: (
+  photoURL?: string | null,
+) => Array<BottomTabRoute> = photoURL => {
+  return [
+    {
+      name: 'NewsListingScreen',
+      component: NewsListingScreen,
+      options: {
+        tabBarLabel: 'News',
+        tabBarIcon: ({ color }) => {
+          return (
+            <>
+              <Icon
+                name="home"
+                color={colors().background}
+                style={{ color } as ViewStyle}
+                size={40}
+              />
+            </>
+          );
+        },
+      },
+    },
+    {
+      name: 'ProfileScreen',
+      component: ProfileScreen,
+      options: {
+        tabBarLabel: 'Profile',
+        tabBarIcon: ({ color }) => {
+          return (
+            <View
+              width={40}
+              height={40}
+              borderRadius={40}
+              padding={2}
+              borderWidth={2}
+              borderColor={color}>
+              <Image
+                sourceFile={
+                  photoURL
+                    ? {
+                        uri: photoURL || '',
+                      }
+                    : images.defaultUser
+                }
+                borderRadius={40}
+                width={32}
+                height={32}
+              />
+            </View>
+          );
+        },
+      },
+    },
+  ];
+};

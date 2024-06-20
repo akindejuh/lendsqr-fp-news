@@ -58,7 +58,7 @@ const ProfileScreen: FunctionComponent = () => {
         flexDirection="row"
         alignItems="center"
         justifyContent="space-between"
-        marginTop={Platform.OS === 'ios' ? 20 : 10}>
+        marginTop={Platform.OS === 'ios' ? 20 : 30}>
         <Text
           text="Your Profile"
           fontSize={20}
