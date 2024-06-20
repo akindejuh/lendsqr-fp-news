@@ -30,12 +30,34 @@ Below are the features of FP News:
 [Notion Link:](https://www.notion.so/gbenga2540/4a6e456c89364497b3b2b3f365e59ef6?v=855dd89badcb4d4c97dcea77a24b65b1&pvs=4)
 
 ## Installation
+Clone the repo
 ```sh
 git clone https://github.com/gbenga2540/lendsqr-fp-news.git
+```
+
+Navigate into the folder
+```sh
 cd lendsqr-fp-news
+```
+
+Install Packages using Yarn
+```sh
 yarn install
-yarn android #command to run on Android Emulator
-yarn ios #command to run on iOS Simulator
+```
+
+Install iOS Pods
+```sh
+yarn pod:install
+```
+
+Run on Android Emulator or Device
+```sh
+yarn android
+```
+
+Run on iOS Simulator or Device
+```sh
+yarn ios
 ```
     
 ## Downloads
