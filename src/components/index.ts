@@ -1,3 +1,4 @@
+export * from './back-button/back-button';
 export * from './button/button';
 export * from './divider/divider';
 export * from './icon/icon';

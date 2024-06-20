@@ -1,14 +1,20 @@
 import { StyleProp, ViewStyle } from 'react-native';
 import { SvgProps } from 'react-native-svg';
 
-import googleLogo from '../../assets/svg/google-logo.svg';
-import pwdOff from '../../assets/svg/pwd-off.svg';
-import pwdOn from '../../assets/svg/pwd-on.svg';
+import backArrow from '../../assets/svg/back-arrow.svg'
+import googleLogo from '../../assets/svg/google-logo.svg'
+import home from '../../assets/svg/home.svg'
+import pwdOff from '../../assets/svg/pwd-off.svg'
+import pwdOn from '../../assets/svg/pwd-on.svg'
+import share from '../../assets/svg/share.svg'
 
 export const ICONS = {
-  'google-logo': googleLogo,
-  'pwd-off': pwdOff,
-  'pwd-on': pwdOn,
+  "back-arrow": backArrow,
+  "google-logo": googleLogo,
+  "home": home,
+  "pwd-off": pwdOff,
+  "pwd-on": pwdOn,
+  "share": share
 };
 
 export type IconName = keyof typeof ICONS;

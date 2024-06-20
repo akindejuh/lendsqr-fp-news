@@ -53,13 +53,15 @@ const newsDetailSlice = createSlice({
         },
       );
 
-      state = {
-        ...state,
-        ...newData,
-        isLoading: false,
-        isError: false,
-        error: '',
-      };
+      state.audience_score = newData.audience_score;
+      state.id = newData.id;
+      state.title = newData.title;
+      state.topic = newData.topic;
+      state.image_url = newData.image_url;
+      state.author = newData.author;
+      state.publication_date = newData.publication_date;
+      state.summary = newData.summary;
+      state.content = newData.content;
 
       state.isLoading = false;
       state.isError = false;

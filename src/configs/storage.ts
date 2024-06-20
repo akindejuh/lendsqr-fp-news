@@ -1,4 +1,5 @@
 import EncryptedStorage from 'react-native-encrypted-storage';
+import { recordCrashlyticsError } from '../utils/crashlytics-handler';
 
 /**
  * Loads a string from storage.
@@ -8,7 +9,8 @@ import EncryptedStorage from 'react-native-encrypted-storage';
 export async function loadString(key: string): Promise<string | null> {
   try {
     return await EncryptedStorage.getItem(key);
-  } catch {
+  } catch (err) {
+    recordCrashlyticsError(err);
     return null;
   }
 }
@@ -23,7 +25,8 @@ export async function saveString(key: string, value: string): Promise<boolean> {
   try {
     await EncryptedStorage.setItem(key, value);
     return true;
-  } catch {
+  } catch (err) {
+    recordCrashlyticsError(err);
     return false;
   }
 }
@@ -37,7 +40,8 @@ export async function load(key: string): Promise<any | null> {
   try {
     const storedItem = await EncryptedStorage.getItem(key);
     return JSON.parse(storedItem as string);
-  } catch {
+  } catch (err) {
+    recordCrashlyticsError(err);
     return null;
   }
 }
@@ -52,7 +56,8 @@ export async function save(key: string, value: any): Promise<boolean> {
   try {
     await EncryptedStorage.setItem(key, JSON.stringify(value));
     return true;
-  } catch {
+  } catch (err) {
+    recordCrashlyticsError(err);
     return false;
   }
 }
@@ -66,7 +71,8 @@ export async function remove(key: string): Promise<boolean> {
   try {
     await EncryptedStorage.removeItem(key);
     return true;
-  } catch {
+  } catch (err) {
+    recordCrashlyticsError(err);
     return false;
   }
 }
@@ -78,7 +84,8 @@ export async function reset(): Promise<boolean> {
   try {
     await EncryptedStorage.clear();
     return true;
-  } catch {
+  } catch (err) {
+    recordCrashlyticsError(err);
     return false;
   }
 }

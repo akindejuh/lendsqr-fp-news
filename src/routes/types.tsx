@@ -1,3 +1,4 @@
+import { BottomTabScreenProps } from '@react-navigation/bottom-tabs';
 import {
   CompositeScreenProps,
   NavigatorScreenParams,
@@ -21,11 +22,22 @@ export type AuthStackParamList = {
 };
 
 export type AppStackParamList = {
-  NewsListingScreen: undefined;
+  HomeTab: NavigatorScreenParams<HomeTabParamList> | undefined;
   NewsDetailsScreen: {
     news_id: string;
   };
 };
+
+export type HomeTabParamList = {
+  NewsListingScreen: undefined;
+  ProfileScreen: undefined;
+};
+
+export type MenuScreenProps<Screen extends keyof HomeTabParamList> =
+  CompositeScreenProps<
+    BottomTabScreenProps<HomeTabParamList, Screen>,
+    NativeStackScreenProps<AppStackParamList>
+  >;
 
 export type AuthStackScreenProps<Screen extends keyof AuthStackParamList> =
   CompositeScreenProps<

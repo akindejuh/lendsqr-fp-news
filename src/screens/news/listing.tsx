@@ -1,9 +1,11 @@
-import React, { FunctionComponent, useEffect, useState } from 'react';
+import React, { FunctionComponent, useEffect, useMemo, useState } from 'react';
 import {
   ActivityIndicator,
   FlatList,
+  Platform,
   RefreshControl,
   TextStyle,
+  ViewStyle,
 } from 'react-native';
 import { fonts } from 'src/assets/fonts/fonts';
 import {
@@ -21,16 +23,25 @@ import {
   clearNewsListing,
 } from 'src/redux/slice/news/listing-slice';
 import { useAppDispatch, useAppSelector } from 'src/redux/store';
+import crashlytics from '@react-native-firebase/crashlytics';
+import { logCrashlystics } from 'src/utils/crashlytics-handler';
 
 const NewsListingScreen: FunctionComponent = (): React.JSX.Element => {
   const dispatch = useAppDispatch();
 
-  const { error, items, isError, isLoading, page } =
+  const { items, isError, isLoading, page } =
     useAppSelector(getNewsListingState);
   const data_items = items.flatMap(item => item.data);
 
+  const data_items_memo = useMemo(() => data_items, [data_items]);
+
   const [search, setSearch] = useState<string>('');
   const [currentPage, setCurrentPage] = useState<number>(1);
+
+  const crashTheApp = () => {
+    logCrashlystics('Crashing the app now!');
+    crashlytics().crash();
+  };
 
   const retryFetch = () => {
     dispatch(
@@ -42,7 +53,7 @@ const NewsListingScreen: FunctionComponent = (): React.JSX.Element => {
   };
 
   const fetchNextPage = () => {
-    if (page.current_page < page.total_page && data_items?.length > 0) {
+    if (page.current_page < page.total_page && data_items_memo?.length > 0) {
       setCurrentPage(currentPage + 1);
     }
     return;
@@ -64,7 +75,7 @@ const NewsListingScreen: FunctionComponent = (): React.JSX.Element => {
   const onRefetchNews = () => {
     return (
       <RefreshControl
-        refreshing={isLoading && data_items?.length > 0}
+        refreshing={isLoading && data_items_memo?.length > 0}
         onRefresh={() => {
           if (search === '' && currentPage === 1) {
             dispatch(
@@ -93,7 +104,7 @@ const NewsListingScreen: FunctionComponent = (): React.JSX.Element => {
   return (
     <Screen preset="fixed">
       <View
-        marginTop={20}
+        marginTop={Platform.OS === 'ios' ? 20 : 30}
         flexDirection="row"
         justifyContent="space-between"
         alignItems="center">
@@ -102,7 +113,12 @@ const NewsListingScreen: FunctionComponent = (): React.JSX.Element => {
           fontFamily={fonts.primaryFont_500}
           fontSize={19}
         />
-        <Button text="Throw Error" preset="link" textStyle={ERROR_TEXT} />
+        <Button
+          text="Throw Error"
+          preset="link"
+          textStyle={ERROR_TEXT}
+          onPress={crashTheApp}
+        />
       </View>
 
       <TextField
@@ -115,21 +131,23 @@ const NewsListingScreen: FunctionComponent = (): React.JSX.Element => {
 
       {isError && (
         <View flex={1} justifyContent="center" alignItems="center">
-          <Text text="Something went wrong" fontSize={14} marginBottom={1} />
-          {error && (
-            <Text text={error} fontSize={12} marginBottom={3} color={'red'} />
-          )}
+          <Text
+            text="Something went wrong"
+            fontSize={14}
+            marginBottom={1}
+            color={'red'}
+          />
           <Button preset="link" onPress={retryFetch} text="Retry" />
         </View>
       )}
 
-      {isLoading && data_items?.length === 0 && !isError && (
+      {isLoading && data_items_memo?.length === 0 && !isError && (
         <View flex={1} justifyContent="center" alignItems="center">
           <ActivityIndicator color={colors.grayText} />
         </View>
       )}
 
-      {data_items?.length > 0 && !isError && (
+      {data_items_memo?.length > 0 && !isError && (
         <FlatList
           renderItem={({ item, index }) => (
             <NewsListingComp
@@ -137,16 +155,17 @@ const NewsListingScreen: FunctionComponent = (): React.JSX.Element => {
               {...item}
             />
           )}
-          data={data_items}
+          data={data_items_memo}
           refreshControl={onRefetchNews()}
           showsVerticalScrollIndicator={false}
           keyExtractor={(item, index) => `${item?.id}-${index}`}
-          windowSize={5}
-          initialNumToRender={5}
-          maxToRenderPerBatch={5}
+          windowSize={8}
+          initialNumToRender={8}
+          maxToRenderPerBatch={8}
           onEndReachedThreshold={0.5}
           onEndReached={() => fetchNextPage()}
           ListFooterComponent={renderListFooterComp()}
+          style={FLAT_LIST}
         />
       )}
     </Screen>
@@ -159,4 +178,8 @@ const ERROR_TEXT: TextStyle = {
   color: 'red',
   fontFamily: fonts.primaryFont_500,
   fontSize: 14,
+};
+
+const FLAT_LIST: ViewStyle = {
+  paddingTop: 10,
 };

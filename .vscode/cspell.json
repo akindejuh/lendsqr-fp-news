@@ -11,7 +11,9 @@
     "xcodebuild",
     "xcworkspace",
     "codegen",
-    "reduxjs"
+    "reduxjs",
+    "Crashlystics",
+    "crashlystics"
   ],
   // flagWords - list of words to be always considered incorrect
   "flagWords": []

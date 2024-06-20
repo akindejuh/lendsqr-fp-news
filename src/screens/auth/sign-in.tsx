@@ -1,21 +1,68 @@
 import { useNavigation } from '@react-navigation/native';
-import React, { FunctionComponent, useState } from 'react';
+import React, { FunctionComponent, useCallback, useState } from 'react';
 import { TextStyle } from 'react-native';
 import { fonts } from 'src/assets/fonts/fonts';
 import { Button, Divider, Icon, Screen, Text, TextField } from 'src/components';
 import { colors } from 'src/design-system';
+import { LoginUserRequest } from 'src/domain/auth';
+import { errorToast, successToast } from 'src/helpers';
+import { logCrashlystics } from 'src/utils/crashlytics-handler';
+import validator from 'validator';
 
 const SignInScreen: FunctionComponent = (): React.JSX.Element => {
   const navigation = useNavigation();
 
-  const [email, setEmail] = useState<string>('');
-  const [password, setPassword] = useState<string>('');
+  const [loginData, setLoginData] = useState<LoginUserRequest>({
+    email: '',
+    password: '',
+  });
 
-  const navToNewsScreen = () => {
-    navigation.navigate('AppStack', {
-      screen: 'NewsListingScreen',
-    });
+  const handleInputChange = (key: string, val: string) => {
+    setLoginData(prev => ({
+      ...prev,
+      [key]: val,
+    }));
   };
+
+  const loginUser = useCallback(() => {
+    // TODO: Disable
+    // navigation.reset({
+    //   index: 0,
+    //   routes: [
+    //     {
+    //       name: 'AppStack',
+    //       state: {
+    //         routes: [{ name: 'NewsListingScreen' }],
+    //       },
+    //     },
+    //   ],
+    // });
+
+    if (!validator.isEmail(loginData.email)) {
+      logCrashlystics('User Entered an Invalid Email!');
+      errorToast({
+        message: 'Invalid Email!',
+      });
+      return;
+    }
+
+    if (!loginData.password) {
+      logCrashlystics('User did not input a password!');
+      errorToast({
+        message: 'Invalid Password!',
+      });
+      return;
+    }
+
+    logCrashlystics('User Logged in successfully logic!');
+    successToast({
+      message: 'User Logged in successfully logic!',
+    });
+    setLoginData({
+      email: '',
+      password: '',
+    });
+  }, [loginData]);
 
   const navToSignUpScreen = () => {
     navigation.navigate('AuthStack', {
@@ -41,8 +88,8 @@ const SignInScreen: FunctionComponent = (): React.JSX.Element => {
       />
       <TextField
         marginBottom={15}
-        value={email}
-        setValue={setEmail}
+        value={loginData.email}
+        setValue={text => handleInputChange('email', text as string)}
         placeholder="Enter your email"
       />
 
@@ -54,8 +101,8 @@ const SignInScreen: FunctionComponent = (): React.JSX.Element => {
       />
       <TextField
         marginBottom={15}
-        value={password}
-        setValue={setPassword}
+        value={loginData.password}
+        setValue={text => handleInputChange('password', text as string)}
         placeholder="Enter your password"
         secureTextEntry
         isPassword
@@ -71,7 +118,7 @@ const SignInScreen: FunctionComponent = (): React.JSX.Element => {
         textStyle={LINK_TEXT}
       />
 
-      <Button text="Login" marginTop={8} onPress={navToNewsScreen} />
+      <Button text="Login" marginTop={8} onPress={loginUser} />
 
       <Divider marginTop={30} marginBottom={20} />
 

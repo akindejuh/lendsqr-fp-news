@@ -81,4 +81,7 @@ yarn-error.log
 # Firebase
 android/app/google-services.json
 ios/fpnews/GoogleService-Info.plist
+ios/fpnews/AppCenter-Config.plist
 ios/GoogleService-Info.plist
+ios/AppCenter-Config.plist
+android/app/src/main/assets/appcenter-config.json

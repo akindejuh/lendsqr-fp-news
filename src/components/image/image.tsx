@@ -11,6 +11,8 @@ interface ImageProps extends Partial<ImageStyle> {
 
 export function Image({ sourceFile, ...props }: ImageProps): React.JSX.Element {
   const IMAGE: ImageStyle = {
+    width: '100%',
+    aspectRatio: 1,
     ...props,
   };
 

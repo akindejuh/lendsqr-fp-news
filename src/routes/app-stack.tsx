@@ -8,7 +8,7 @@ const App = createNativeStackNavigator<AppStackParamList>();
 export default function AppStack(): React.JSX.Element | null {
   return (
     <App.Navigator
-      initialRouteName={'NewsListingScreen'}
+      initialRouteName={'HomeTab'}
       screenOptions={{
         headerShown: false,
       }}>

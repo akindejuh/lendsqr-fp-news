@@ -14,6 +14,7 @@
 		19F6C546E69C47E5ADDB7BDD /* Poppins-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 88D58DC0E10F4CA6A606422C /* Poppins-Medium.ttf */; };
 		283013B4A3107389CAE82C19 /* Pods_fpnews.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 32B7CF264B22C0847D983907 /* Pods_fpnews.framework */; };
 		3D0C23A42C226E9200B1387C /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 3D0C23A32C226E9200B1387C /* GoogleService-Info.plist */; };
+		3DD3BD7D2C23755D009545AF /* AppCenter-Config.plist in Resources */ = {isa = PBXBuildFile; fileRef = 3DD3BD7C2C23755D009545AF /* AppCenter-Config.plist */; };
 		4A114BDC1F6842488657EECE /* fonts.ts in Resources */ = {isa = PBXBuildFile; fileRef = 9EE2C7E1969E4C51B7E61EF5 /* fonts.ts */; };
 		69B30FF1980187B43B3E4369 /* PrivacyInfo.xcprivacy in Resources */ = {isa = PBXBuildFile; fileRef = 4887AAA04420D19D920BAA64 /* PrivacyInfo.xcprivacy */; };
 		81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */; };
@@ -47,6 +48,7 @@
 		32B7CF264B22C0847D983907 /* Pods_fpnews.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_fpnews.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		3B4392A12AC88292D35C810B /* Pods-fpnews.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-fpnews.debug.xcconfig"; path = "Target Support Files/Pods-fpnews/Pods-fpnews.debug.xcconfig"; sourceTree = "<group>"; };
 		3D0C23A32C226E9200B1387C /* GoogleService-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		3DD3BD7C2C23755D009545AF /* AppCenter-Config.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "AppCenter-Config.plist"; sourceTree = "<group>"; };
 		4887AAA04420D19D920BAA64 /* PrivacyInfo.xcprivacy */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xml; name = PrivacyInfo.xcprivacy; path = fpnews/PrivacyInfo.xcprivacy; sourceTree = "<group>"; };
 		4BD2B7CFC99B45E0B3C9CAEC /* Poppins-Regular.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Poppins-Regular.ttf"; path = "../src/assets/fonts/Poppins-Regular.ttf"; sourceTree = "<group>"; };
 		5709B34CF0A7D63546082F79 /* Pods-fpnews.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-fpnews.release.xcconfig"; path = "Target Support Files/Pods-fpnews/Pods-fpnews.release.xcconfig"; sourceTree = "<group>"; };
@@ -142,6 +144,7 @@
 		83CBB9F61A601CBA00E9B192 = {
 			isa = PBXGroup;
 			children = (
+				3DD3BD7C2C23755D009545AF /* AppCenter-Config.plist */,
 				3D0C23A32C226E9200B1387C /* GoogleService-Info.plist */,
 				13B07FAE1A68108700A75B9A /* fpnews */,
 				832341AE1AAA6A7D00B99B32 /* Libraries */,
@@ -273,6 +276,7 @@
 			files = (
 				3D0C23A42C226E9200B1387C /* GoogleService-Info.plist in Resources */,
 				81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */,
+				3DD3BD7D2C23755D009545AF /* AppCenter-Config.plist in Resources */,
 				13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */,
 				69B30FF1980187B43B3E4369 /* PrivacyInfo.xcprivacy in Resources */,
 				F895E9F3760547F1A98E0436 /* Poppins-Bold.ttf in Resources */,
