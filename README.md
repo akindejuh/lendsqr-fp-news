@@ -10,7 +10,7 @@
 * [Download](#downloads)
 
 ## Demo
-[Demo:](https://drive.google.com/file/d/1TfhEfKXeO-hT0AU7JVnBMFwgfYZwmE-N/view?usp=sharing)
+Demo Video: [Demo](https://drive.google.com/file/d/1TfhEfKXeO-hT0AU7JVnBMFwgfYZwmE-N/view?usp=sharing)
 
 ## Main Features
 Below are the features of FP News:
@@ -28,7 +28,7 @@ Below are the features of FP News:
 - Sign Out
 
 ## Notion BreakDown
-[Notion Link:](https://www.notion.so/gbenga2540/4a6e456c89364497b3b2b3f365e59ef6?v=855dd89badcb4d4c97dcea77a24b65b1&pvs=4)
+Notion Link: [Notion](https://www.notion.so/gbenga2540/4a6e456c89364497b3b2b3f365e59ef6?v=855dd89badcb4d4c97dcea77a24b65b1&pvs=4)
 
 ## Implementation Process
 #### Project Initialization
