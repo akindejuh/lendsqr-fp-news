@@ -85,3 +85,6 @@ ios/fpnews/AppCenter-Config.plist
 ios/GoogleService-Info.plist
 ios/AppCenter-Config.plist
 android/app/src/main/assets/appcenter-config.json
+
+# Jest
+*.snap
