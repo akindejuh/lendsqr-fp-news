@@ -1,16 +1,25 @@
 import { useNavigation } from '@react-navigation/native';
 import React, { FunctionComponent, useCallback, useState } from 'react';
-import { TextStyle } from 'react-native';
+import { ActivityIndicator, TextStyle } from 'react-native';
 import { fonts } from 'src/assets/fonts/fonts';
-import { Button, Divider, Icon, Screen, Text, TextField } from 'src/components';
+import {
+  Button,
+  Divider,
+  Icon,
+  Screen,
+  Text,
+  TextField,
+  View,
+} from 'src/components';
 import { colors } from 'src/design-system';
-import { LoginUserRequest } from 'src/domain/auth';
+import { LoginUserRequest, SignInUserWithGoogle } from 'src/domain/auth';
 import { errorToast, successToast } from 'src/helpers';
 import { logCrashlystics } from 'src/utils/crashlytics-handler';
 import validator from 'validator';
 
 const SignInScreen: FunctionComponent = (): React.JSX.Element => {
   const navigation = useNavigation();
+  const [isSignInLoading, setIsSignInLoading] = useState<boolean>(false);
 
   const [loginData, setLoginData] = useState<LoginUserRequest>({
     email: '',
@@ -26,17 +35,6 @@ const SignInScreen: FunctionComponent = (): React.JSX.Element => {
 
   const loginUser = useCallback(() => {
     // TODO: Disable
-    // navigation.reset({
-    //   index: 0,
-    //   routes: [
-    //     {
-    //       name: 'AppStack',
-    //       state: {
-    //         routes: [{ name: 'NewsListingScreen' }],
-    //       },
-    //     },
-    //   ],
-    // });
 
     if (!validator.isEmail(loginData.email)) {
       logCrashlystics('User Entered an Invalid Email!');
@@ -64,11 +62,30 @@ const SignInScreen: FunctionComponent = (): React.JSX.Element => {
     });
   }, [loginData]);
 
+  const initGoogleSignInUser = async () => {
+    setTimeout(() => {
+      setIsSignInLoading(true);
+    }, 2000);
+    await SignInUserWithGoogle();
+    setIsSignInLoading(false);
+  };
+
   const navToSignUpScreen = () => {
     navigation.navigate('AuthStack', {
       screen: 'SignUpScreen',
     });
   };
+
+  if (isSignInLoading) {
+    return (
+      <Screen preset="fixed">
+        <View flex={1} justifyContent="center" alignItems="center">
+          <Text text="Signing In..." marginBottom={4} color={colors.linkText} />
+          <ActivityIndicator />
+        </View>
+      </Screen>
+    );
+  }
 
   return (
     <Screen preset="scroll">
@@ -123,6 +140,7 @@ const SignInScreen: FunctionComponent = (): React.JSX.Element => {
       <Divider marginTop={30} marginBottom={20} />
 
       <Button
+        onPress={initGoogleSignInUser}
         backgroundColor={colors.transparent}
         borderWidth={1}
         borderRadius={6}

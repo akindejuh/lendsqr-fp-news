@@ -2,6 +2,7 @@ import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import { RootState } from 'src/redux/store';
 import { UINewsDetail } from 'src/domain/news/types';
 import { getNewsDetail, transformNewsDetail } from 'src/domain/news';
+import { recordCrashlyticsError } from 'src/utils/crashlytics-handler';
 
 interface NewsDetailState extends UINewsDetail, FetchState {}
 const initialState: NewsDetailState = {
@@ -68,6 +69,7 @@ const newsDetailSlice = createSlice({
       state.error = '';
     });
     builder.addCase(getNewsDetailThunk.rejected, (state, action) => {
+      recordCrashlyticsError('News API call failed!');
       state.isLoading = false;
       state.isError = true;
       state.error = action.error?.message || '';

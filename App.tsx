@@ -6,13 +6,13 @@
  */
 
 import React, { FunctionComponent, useEffect, useRef } from 'react';
-import { Appearance, Platform } from 'react-native';
+import { ActivityIndicator, Appearance, Platform } from 'react-native';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
 import { NavigationContainer } from '@react-navigation/native';
 import SplashScreen from 'react-native-splash-screen';
 import { Provider } from 'react-redux';
 import RootStack from 'src/routes/root-stack';
-import store from 'src/redux/store';
+import store, { persistor } from 'src/redux/store';
 import { getNewsListing } from 'src/domain/news';
 import { requestAndroidNotifications } from 'src/utils/android-notifications';
 import Toast from 'react-native-toast-message';
@@ -21,13 +21,18 @@ import analytics from '@react-native-firebase/analytics';
 import { RemoteConfigProvider } from 'src/context/remote-config/remote-config-provider';
 import { CrashReportProvider } from 'src/context/crash-report/crash-report-provider';
 import { logCrashlystics } from 'src/utils/crashlytics-handler';
+import { AuthConfigProvider } from 'src/context/auth-config/auth-config';
+import { PersistGate } from 'redux-persist/integration/react';
+import { View } from 'src/components';
+import { setupGoogleSignIn } from 'src/configs/google';
 
 const App: FunctionComponent = () => {
   const navigationRef: any = useRef();
   const routeNameRef: any = useRef();
 
   useEffect(() => {
-    logCrashlystics('App Mounted!');
+    setupGoogleSignIn();
+    logCrashlystics('FP News is launched!');
     // This is used here because I used a server that spins down after a period of inactivity
     getNewsListing({
       page: '1',
@@ -40,37 +45,52 @@ const App: FunctionComponent = () => {
   }, []);
 
   return (
-    <CrashReportProvider>
-      <RemoteConfigProvider>
-        <SafeAreaProvider>
-          <NavigationContainer
-            ref={navigationRef}
-            onReady={() => {
-              Platform.OS === 'android' && SplashScreen.hide();
-              routeNameRef.current =
-                navigationRef.current.getCurrentRoute().name;
-            }}
-            onStateChange={async () => {
-              const previousRouteName = routeNameRef.current;
-              const currentRouteName =
-                navigationRef.current.getCurrentRoute().name;
+    <>
+      <AuthConfigProvider>
+        <CrashReportProvider>
+          <RemoteConfigProvider>
+            <SafeAreaProvider>
+              <NavigationContainer
+                ref={navigationRef}
+                onReady={() => {
+                  Platform.OS === 'android' && SplashScreen.hide();
+                  routeNameRef.current =
+                    navigationRef.current.getCurrentRoute().name;
+                }}
+                onStateChange={async () => {
+                  const previousRouteName = routeNameRef.current;
+                  const currentRouteName =
+                    navigationRef.current.getCurrentRoute().name;
 
-              if (previousRouteName !== currentRouteName) {
-                await analytics().logScreenView({
-                  screen_name: currentRouteName,
-                  screen_class: currentRouteName,
-                });
-              }
-              routeNameRef.current = currentRouteName;
-            }}>
-            <Provider store={store}>
-              <RootStack />
-              <Toast />
-            </Provider>
-          </NavigationContainer>
-        </SafeAreaProvider>
-      </RemoteConfigProvider>
-    </CrashReportProvider>
+                  if (previousRouteName !== currentRouteName) {
+                    await analytics().logScreenView({
+                      screen_name: currentRouteName,
+                      screen_class: currentRouteName,
+                    });
+                  }
+                  routeNameRef.current = currentRouteName;
+                }}>
+                <Provider store={store}>
+                  <PersistGate
+                    loading={
+                      <View
+                        flex={1}
+                        justifyContent="center"
+                        alignItems="center">
+                        <ActivityIndicator />
+                      </View>
+                    }
+                    persistor={persistor}
+                  />
+                  <RootStack />
+                  <Toast />
+                </Provider>
+              </NavigationContainer>
+            </SafeAreaProvider>
+          </RemoteConfigProvider>
+        </CrashReportProvider>
+      </AuthConfigProvider>
+    </>
   );
 };
 

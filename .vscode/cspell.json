@@ -13,7 +13,9 @@
     "codegen",
     "reduxjs",
     "Crashlystics",
-    "crashlystics"
+    "crashlystics",
+    "persistor",
+    "signin"
   ],
   // flagWords - list of words to be always considered incorrect
   "flagWords": []

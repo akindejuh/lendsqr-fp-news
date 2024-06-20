@@ -2,13 +2,29 @@ import React, { FunctionComponent } from 'react';
 import { Alert, Platform, TextStyle } from 'react-native';
 import { fonts } from 'src/assets/fonts/fonts';
 import { Button, Image, Screen, Text, View } from 'src/components';
+import { useAuth } from 'src/context/auth-config/interfaces';
 import { colors } from 'src/design-system';
+import auth from '@react-native-firebase/auth';
+import { GoogleSignin } from '@react-native-google-signin/google-signin';
+import analytics from '@react-native-firebase/analytics';
+import { images } from 'src/assets/images/images';
 
 const ProfileScreen: FunctionComponent = () => {
+  const authStatus = useAuth();
+  const userInfo = authStatus?.user;
+
+  const signUserOut = async () => {
+    // await GoogleSignin.revokeAccess();
+    await GoogleSignin.signOut();
+    await analytics().resetAnalyticsData();
+    auth().signOut();
+    authStatus?.setUser(null);
+  };
+
   const onLogout = () => {
     Alert.alert(
-      'Log out',
-      'Are you sure you want to sign out?',
+      'Sign Out',
+      'Are you sure you want to log out?',
       [
         {
           text: 'No',
@@ -17,7 +33,9 @@ const ProfileScreen: FunctionComponent = () => {
         {
           text: 'Yhup',
           style: 'destructive',
-          onPress: () => {},
+          onPress: async () => {
+            await signUserOut();
+          },
         },
       ],
       { cancelable: false },
@@ -43,28 +61,41 @@ const ProfileScreen: FunctionComponent = () => {
         padding={3}
         borderColor={colors.primary}>
         <Image
-          sourceFile={{
-            uri: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQkR3lar-JsOhzP1ftPCSJhEfTUUIyBdYiXkw&s',
-          }}
+          sourceFile={
+            userInfo?.photoURL
+              ? {
+                  uri: userInfo?.photoURL || '',
+                }
+              : images.defaultUser
+          }
           borderRadius={200}
-        />
-
-        <Text
-          text="Akindeju Gbenga"
-          textAlign="center"
-          marginTop={20}
-          fontFamily={fonts.primaryFont_500}
-          fontSize={18}
-        />
-
-        <Button
-          preset="link"
-          text="Logout"
-          marginTop={5}
-          textStyle={LOG_OUT}
-          onPress={onLogout}
+          width={190}
+          height={190}
         />
       </View>
+
+      <Text
+        text={userInfo?.displayName || ''}
+        textAlign="center"
+        marginTop={10}
+        fontFamily={fonts.primaryFont_500}
+        fontSize={18}
+      />
+      <Text
+        text={userInfo?.email || ''}
+        textAlign="center"
+        marginTop={1}
+        fontFamily={fonts.primaryFont_400}
+        fontSize={14}
+      />
+
+      <Button
+        preset="link"
+        text="Logout"
+        marginTop={40}
+        textStyle={LOG_OUT}
+        onPress={onLogout}
+      />
     </Screen>
   );
 };

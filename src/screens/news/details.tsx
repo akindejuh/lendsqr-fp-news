@@ -110,7 +110,14 @@ const NewsDetailsScreen: FunctionComponent = (): React.JSX.Element => {
         justifyContent="space-between"
         alignItems="center">
         <BackButton />
-        <Icon name="share" size={20} onPress={shareNews} style={ICON} />
+
+        <Button
+          onPress={shareNews}
+          backgroundColor={colors.transparent}
+          width={50}
+          alignItems="flex-end"
+          children={<Icon name="share" size={20} style={ICON} />}
+        />
       </View>
 
       {isError && (

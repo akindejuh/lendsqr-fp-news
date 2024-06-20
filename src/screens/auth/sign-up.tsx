@@ -1,16 +1,25 @@
 import { useNavigation } from '@react-navigation/native';
 import React, { FunctionComponent, useCallback, useState } from 'react';
-import { TextStyle } from 'react-native';
+import { ActivityIndicator, TextStyle } from 'react-native';
 import { fonts } from 'src/assets/fonts/fonts';
-import { Button, Divider, Icon, Screen, Text, TextField } from 'src/components';
+import {
+  Button,
+  Divider,
+  Icon,
+  Screen,
+  Text,
+  TextField,
+  View,
+} from 'src/components';
 import { colors } from 'src/design-system';
-import { RegisterRequest } from 'src/domain/auth';
+import { RegisterRequest, SignInUserWithGoogle } from 'src/domain/auth';
 import { errorToast, successToast } from 'src/helpers';
 import { logCrashlystics } from 'src/utils/crashlytics-handler';
 import validator from 'validator';
 
 const SignUpScreen: FunctionComponent = (): React.JSX.Element => {
   const navigation = useNavigation();
+  const [isSignInLoading, setIsSignInLoading] = useState<boolean>(false);
 
   const [registerData, setRegisterData] = useState<RegisterRequest>({
     email: '',
@@ -65,6 +74,25 @@ const SignUpScreen: FunctionComponent = (): React.JSX.Element => {
       screen: 'SignInScreen',
     });
   };
+
+  const initGoogleSignUpUser = async () => {
+    setTimeout(() => {
+      setIsSignInLoading(true);
+    }, 2000);
+    await SignInUserWithGoogle();
+    setIsSignInLoading(false);
+  };
+
+  if (isSignInLoading) {
+    return (
+      <Screen preset="fixed">
+        <View flex={1} justifyContent="center" alignItems="center">
+          <Text text="Signing In..." marginBottom={4} color={colors.linkText} />
+          <ActivityIndicator />
+        </View>
+      </Screen>
+    );
+  }
 
   return (
     <Screen preset="scroll">
@@ -136,6 +164,7 @@ const SignUpScreen: FunctionComponent = (): React.JSX.Element => {
         height={50}
         justifyContent="center"
         alignItems="center"
+        onPress={initGoogleSignUpUser}
         borderColor={colors.inputBackground}
         flexDirection="row">
         <Icon name="google-logo" size={24} />
