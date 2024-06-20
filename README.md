@@ -35,6 +35,7 @@ Notion Link: [Notion](https://www.notion.so/gbenga2540/4a6e456c89364497b3b2b3f36
 1. **Setting Up the Project**
    - Installed a fresh copy of a Bare React Native CLI project.
    - Performed initial cleanup and established a project structure to streamline development.
+   - Wrote the backend API service and deployed it to onRender
 
 2. **Installing Essential Packages**
    - Installed essential packages including `axios`, `redux`, `encrypted-storage`, among others. These packages are lightweight and support automatic linking.
