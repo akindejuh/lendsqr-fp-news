@@ -78,7 +78,7 @@ const SignUpScreen: FunctionComponent = (): React.JSX.Element => {
   const initGoogleSignUpUser = async () => {
     setTimeout(() => {
       setIsSignInLoading(true);
-    }, 2000);
+    }, 5000);
     await SignInUserWithGoogle();
     setIsSignInLoading(false);
   };
