@@ -15,7 +15,8 @@
     "crashlystics",
     "persistor",
     "signin",
-    "yhup"
+    "yhup",
+    "appcenter"
   ],
   // flagWords - list of words to be always considered incorrect
   "flagWords": []

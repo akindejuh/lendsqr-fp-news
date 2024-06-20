@@ -128,6 +128,7 @@ const LoginScreen: FunctionComponent = (): React.JSX.Element => {
       />
 
       <Button
+        testID="navToSignUpButton"
         text="Don't have an account?"
         preset="link"
         marginLeft={'auto'}
