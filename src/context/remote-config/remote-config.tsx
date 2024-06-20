@@ -20,13 +20,10 @@ export const RemoteConfigProvider: IRemoteconfigProviderProps =
 
     const initialize = useCallback(async () => {
       try {
-        // fetch and activate remote configs
         const success = await fetchAndActivateConfig();
-        // stop if action has been aborted
         if (abortController.current?.signal.aborted) {
           return;
         }
-        // ask the user to try again
         if (!success) {
           Alert.alert(
             'App Launch Failed!',
@@ -36,15 +33,12 @@ export const RemoteConfigProvider: IRemoteconfigProviderProps =
           );
           return;
         }
-        // start the app
         setIsReady(true);
       } catch (err) {
         recordCrashlyticsError(err);
-        // stop if action has been aborted
         if (abortController.current?.signal.aborted) {
           return;
         }
-        // ask user to try again
         Alert.alert(
           'Error',
           'An unexpected error has occurred, please try again.',

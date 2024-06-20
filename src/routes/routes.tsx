@@ -8,15 +8,15 @@ import {
 } from './types';
 
 // Screens for the authStack
-import SignInScreen from 'src/screens/auth/sign-in';
+import LoginScreen from 'src/screens/auth/login';
 import SignUpScreen from 'src/screens/auth/sign-up';
 
 // Screens for the appStack
 import HomeTab from 'src/routes/home-tab';
-import NewsDetailsScreen from 'src/screens/news/details';
+import NewsDetailsScreen from 'src/screens/news/news-details';
 
 // Screens for the HomeTab BottomTab
-import NewsListingScreen from 'src/screens/news/listing';
+import NewsListingScreen from 'src/screens/news/news-listing';
 import ProfileScreen from 'src/screens/profile/profile';
 import { BottomTabNavigationOptions } from '@react-navigation/bottom-tabs';
 
@@ -33,7 +33,7 @@ interface BottomTabRoute {
 }
 
 export const authRoutes: Array<Route<AuthStackParamList>> = [
-  { name: 'SignInScreen', component: SignInScreen },
+  { name: 'LoginScreen', component: LoginScreen },
   { name: 'SignUpScreen', component: SignUpScreen },
 ];
 

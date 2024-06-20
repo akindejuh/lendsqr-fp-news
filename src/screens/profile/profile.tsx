@@ -13,8 +13,8 @@ import { IThemeState, setTheme } from 'src/redux/slice/theme/theme-slice';
 
 const ProfileScreen: FunctionComponent = () => {
   const dispatch = useAppDispatch();
-  const authStatus = useAuth();
-  const userInfo = authStatus?.user;
+  const authState = useAuth();
+  const userInfo = authState?.user;
 
   const [changedTheme, setChangedTheme] = useState<boolean>(false);
 
@@ -23,7 +23,7 @@ const ProfileScreen: FunctionComponent = () => {
     await GoogleSignin.signOut();
     await analytics().resetAnalyticsData();
     auth().signOut();
-    authStatus?.setUser(null);
+    authState?.setUser(null);
   };
 
   const onLogout = () => {

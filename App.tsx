@@ -18,14 +18,15 @@ import { requestAndroidNotifications } from 'src/utils/android-notifications';
 import Toast from 'react-native-toast-message';
 import codePush from 'react-native-code-push';
 import analytics from '@react-native-firebase/analytics';
-import { RemoteConfigProvider } from 'src/context/remote-config/remote-config-provider';
-import { CrashReportProvider } from 'src/context/crash-report/crash-report-provider';
+import { RemoteConfigProvider } from 'src/context/remote-config/remote-config';
+import { CrashReportProvider } from 'src/context/crash-report/crash-report';
 import { logCrashlystics } from 'src/utils/crashlytics-handler';
 import { AuthConfigProvider } from 'src/context/auth-config/auth-config';
 import { PersistGate } from 'redux-persist/integration/react';
 import { View } from 'src/components';
 import { setupGoogleSignIn } from 'src/configs/google';
 import { colors } from 'src/design-system';
+import { NotificationProvider } from 'src/context/notifications/notifications';
 
 const App: FunctionComponent = () => {
   const navigationRef: any = useRef();
@@ -80,14 +81,16 @@ const App: FunctionComponent = () => {
                     }
                     persistor={persistor}
                   />
-                  <RootStack />
-                  <Toast />
+                  <NotificationProvider>
+                    <RootStack />
+                  </NotificationProvider>
                 </Provider>
               </NavigationContainer>
             </SafeAreaProvider>
           </RemoteConfigProvider>
         </CrashReportProvider>
       </AuthConfigProvider>
+      <Toast />
     </>
   );
 };

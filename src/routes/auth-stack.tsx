@@ -8,7 +8,7 @@ const Auth = createNativeStackNavigator<AuthStackParamList>();
 export default function AuthStack(): React.JSX.Element | null {
   return (
     <Auth.Navigator
-      initialRouteName={'SignInScreen'}
+      initialRouteName={'LoginScreen'}
       screenOptions={{
         headerShown: false,
       }}>

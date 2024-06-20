@@ -21,7 +21,6 @@ export const CrashReportProvider: ICrashReportProviderProps =
         if (abortController.current?.signal.aborted) {
           return;
         }
-        // log the error that occurred eventually
       }
     }, []);
 

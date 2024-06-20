@@ -17,7 +17,7 @@ import { errorToast, successToast } from 'src/helpers';
 import { logCrashlystics } from 'src/utils/crashlytics-handler';
 import validator from 'validator';
 
-const SignInScreen: FunctionComponent = (): React.JSX.Element => {
+const LoginScreen: FunctionComponent = (): React.JSX.Element => {
   const navigation = useNavigation();
   const [isSignInLoading, setIsSignInLoading] = useState<boolean>(false);
 
@@ -34,8 +34,6 @@ const SignInScreen: FunctionComponent = (): React.JSX.Element => {
   };
 
   const loginUser = useCallback(() => {
-    // TODO: Disable
-
     if (!validator.isEmail(loginData.email)) {
       logCrashlystics('User Entered an Invalid Email!');
       errorToast({
@@ -160,7 +158,7 @@ const SignInScreen: FunctionComponent = (): React.JSX.Element => {
   );
 };
 
-export default SignInScreen;
+export default LoginScreen;
 
 const LINK_TEXT: TextStyle = {
   fontSize: 13,

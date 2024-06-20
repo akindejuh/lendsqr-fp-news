@@ -37,11 +37,9 @@ export async function fetchAndActivateConfig(): Promise<boolean> {
   } catch (err) {
     recordCrashlyticsError(err);
     const error = err as Error;
-    // throttling means there's a cache so we treat it as a success
     if (/throttle|throttling/i.test(error.message)) {
       return Promise.resolve(true);
     }
-    // eventually consider logging the error through some means
     return Promise.resolve(false);
   }
 }

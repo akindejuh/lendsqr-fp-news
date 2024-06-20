@@ -69,9 +69,9 @@ const SignUpScreen: FunctionComponent = (): React.JSX.Element => {
     });
   }, [registerData]);
 
-  const navToSignInScreen = () => {
+  const navToLoginScreen = () => {
     navigation.navigate('AuthStack', {
-      screen: 'SignInScreen',
+      screen: 'LoginScreen',
     });
   };
 
@@ -153,7 +153,7 @@ const SignUpScreen: FunctionComponent = (): React.JSX.Element => {
         marginLeft={'auto'}
         marginTop={15}
         marginBottom={3}
-        onPress={navToSignInScreen}
+        onPress={navToLoginScreen}
         textStyle={LINK_TEXT}
       />
 

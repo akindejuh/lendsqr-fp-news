@@ -9,17 +9,17 @@ import useAppearance from 'src/hooks/use-appearance';
 const Root = createNativeStackNavigator<RootStackParamList>();
 
 export default function RootStack(): React.JSX.Element | null {
-  const authStatus = useAuth();
+  const authState = useAuth();
 
   useAppearance();
 
   return (
     <Root.Navigator
-      initialRouteName={authStatus?.user?.uid ? 'AppStack' : 'AuthStack'}
+      initialRouteName={authState?.user?.uid ? 'AppStack' : 'AuthStack'}
       screenOptions={{
         headerShown: false,
       }}>
-      {authStatus?.user?.uid ? (
+      {authState?.user?.uid ? (
         <Root.Screen name="AppStack" component={AppStack} />
       ) : (
         <Root.Screen name="AuthStack" component={AuthStack} />
