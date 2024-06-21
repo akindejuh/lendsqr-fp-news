@@ -111,4 +111,4 @@ yarn ios
     
 ## Downloads
 - [Firebase](https://appdistribution.firebase.dev/i/0fd480240967c6b2)
-- [Google Drive](https://drive.google.com/file/d/13AIVfueEaT3VtBVPGe374Jh3yzp_rjxg/view?usp=share_link)
+- [Google Drive](https://drive.google.com/file/d/1GgkzBWrMsNS7Gp1PjQtcDhW5-amqUQTt/view?usp=sharing)
