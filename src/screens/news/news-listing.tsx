@@ -142,8 +142,16 @@ const NewsListingScreen: FunctionComponent = (): React.JSX.Element => {
       )}
 
       {isLoading && data_items_memo?.length === 0 && !isError && (
-        <View flex={1} justifyContent="center" alignItems="center">
-          <ActivityIndicator color={colors().grayText} />
+        <View flex={1} justifyContent="flex-start" alignItems="center">
+          <View marginBottom={40}>
+            <Text text="DISCLAMER:" fontFamily={fonts.primaryFont_700} />
+            <Text
+              text="Please note that this loading state may take a minute or two to load on your first launch, as the API is hosted on a free server. If it doesn't load within a few minutes, kindly exit the app and try again. Thank you for your patience!"
+              fontSize={14}
+              fontFamily={fonts.primaryFont_400}
+            />
+          </View>
+          <ActivityIndicator color={colors().grayText} style={LOAD_STATE} />
         </View>
       )}
 
@@ -182,4 +190,9 @@ const ERROR_TEXT: TextStyle = {
 
 const FLAT_LIST: ViewStyle = {
   paddingTop: 10,
+};
+
+const LOAD_STATE: ViewStyle = {
+  justifyContent: 'center',
+  flex: 1,
 };

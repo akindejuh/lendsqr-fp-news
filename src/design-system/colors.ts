@@ -1,7 +1,8 @@
 import { Appearance } from 'react-native';
-const isDarkMode = Appearance.getColorScheme() === 'dark';
 
 export const colors = () => {
+  const isDarkMode = Appearance.getColorScheme() === 'dark';
+
   return {
     background: isDarkMode ? '#151515' : '#fafafa',
     primary: '#f06c62',
