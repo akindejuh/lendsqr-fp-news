@@ -1,10 +1,10 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { HomeTabParamList } from './types';
 import { homeTabRoutes } from './routes';
 import { colors } from 'src/design-system';
 import { useAuth } from 'src/context/auth-config/interfaces';
-import { Platform } from 'react-native';
+import { Appearance, Platform } from 'react-native';
 
 const BottomTab = createBottomTabNavigator<HomeTabParamList>();
 
@@ -12,18 +12,31 @@ export default function HomeTab() {
   const authState = useAuth();
   const isIOS = Platform.OS === 'ios';
 
+  const [cScheme, setCScheme] = useState(Appearance.getColorScheme());
+  useEffect(() => {
+    const subscription = Appearance.addChangeListener(({ colorScheme }) => {
+      setCScheme(colorScheme);
+    });
+
+    return () => {
+      subscription.remove();
+    };
+  }, []);
+
+  const themeColors = colors(cScheme);
+
   return (
     <BottomTab.Navigator
       initialRouteName={'NewsListingScreen'}
       screenOptions={{
         headerShown: false,
         tabBarShowLabel: false,
-        tabBarActiveTintColor: colors().primary,
+        tabBarActiveTintColor: themeColors.primary,
         tabBarStyle: {
-          backgroundColor: colors().background,
+          backgroundColor: themeColors.background,
           height: isIOS ? 80 : 63,
           paddingTop: isIOS ? 10 : 0,
-          shadowColor: colors().grayText,
+          shadowColor: themeColors.grayText,
           shadowOffset: {
             width: 2,
             height: 2,
