@@ -157,7 +157,18 @@ const SignUpScreen: FunctionComponent = (): React.JSX.Element => {
         textStyle={LINK_TEXT}
       />
 
-      <Button text="Register" marginTop={8} onPress={registerUser} />
+      <Button
+        text="Register"
+        marginTop={8}
+        onPress={registerUser}
+        disabled={
+          !(
+            registerData.email &&
+            registerData.fullName &&
+            registerData.phoneNumber
+          )
+        }
+      />
 
       <Divider marginTop={30} marginBottom={20} />
 

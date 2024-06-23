@@ -138,7 +138,12 @@ const LoginScreen: FunctionComponent = (): React.JSX.Element => {
         textStyle={LINK_TEXT}
       />
 
-      <Button text="Login" marginTop={8} onPress={loginUser} />
+      <Button
+        text="Login"
+        marginTop={8}
+        onPress={loginUser}
+        disabled={!(loginData.email && loginData.password)}
+      />
 
       <Divider marginTop={30} marginBottom={20} />
 
