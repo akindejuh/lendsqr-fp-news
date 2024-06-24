@@ -13,7 +13,7 @@ module.exports = {
     '^.+\\.(js|jsx|ts|tsx)$': 'babel-jest',
   },
   transformIgnorePatterns: [
-    'node_modules/(?!(react-native|@react-native|@react-navigation|@react-native-firebase|@react-native-google-signin|react-native-screens|@react-native-community|@react-native-picker|@react-native-svg|react-native-splash-screen|react-native-responsive-screen|react-native-toast-message|@react-native-firebase/crashlytics|@react-native-firebase/analytics|@react-native-firebase/app|@react-native-firebase/auth|@react-native-firebase/messaging|@react-native-firebase/perf|@react-native-firebase/remote-config|react-native-encrypted-storage)/)',
+    'node_modules/(?!(react-native|@react-native|@react-navigation|@react-native-firebase|@react-native-google-signin|react-native-screens|@react-native-community|@react-native-picker|@react-native-svg|react-native-splash-screen|react-native-responsive-screen|react-native-toast-message|@react-native-firebase/crashlytics|@react-native-firebase/analytics|@react-native-firebase/app|@react-native-firebase/auth|@react-native-firebase/messaging|@react-native-firebase/perf|@react-native-firebase/remote-config|react-native-encrypted-storage)|react-native-share/)',
   ],
   moduleNameMapper: {
     '^src/(.*)$': '<rootDir>/src/$1',

@@ -6,7 +6,7 @@ import { SafeAreaProvider } from 'react-native-safe-area-context';
 import renderer from 'react-test-renderer';
 import { test, expect } from '@jest/globals';
 
-test('News Listing Snapshot', () => {
+test('News Listing Screen Snapshot', () => {
   const snap = renderer
     .create(
       <SafeAreaProvider>

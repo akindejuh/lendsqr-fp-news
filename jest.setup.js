@@ -82,6 +82,11 @@ jest.mock('react-native-toast-message', () => ({
 }));
 
 jest.mock('redux-persist', () => ({
-  persistStore: store => Promise.resolve(store),
-  persistReducer: jest.fn(),
+  persistStore: jest.fn().mockReturnValue({}),
+  persistReducer: jest.fn().mockImplementation((_, reducers) => reducers),
+}));
+
+jest.mock('react-native-share', () => ({
+  open: jest.fn(),
+  shareSingle: jest.fn(),
 }));
