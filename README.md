@@ -110,5 +110,5 @@ yarn ios
 ```
     
 ## Downloads
-- [Firebase](https://appdistribution.firebase.dev/i/0fd480240967c6b2)
+- [Firebase](https://appdistribution.firebase.dev/i/36afd0fe359bbed8)
 - [Google Drive](https://drive.google.com/file/d/1GgkzBWrMsNS7Gp1PjQtcDhW5-amqUQTt/view?usp=sharing)
