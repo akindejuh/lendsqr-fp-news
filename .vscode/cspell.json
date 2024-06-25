@@ -16,7 +16,8 @@
     "persistor",
     "signin",
     "yhup",
-    "appcenter"
+    "appcenter",
+    "DISCLAMER"
   ],
   // flagWords - list of words to be always considered incorrect
   "flagWords": []
