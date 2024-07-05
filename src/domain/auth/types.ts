@@ -3,7 +3,7 @@ export interface LoginUserRequest {
   email: string;
   password: string;
 }
-export interface RegisterRequest {
+export interface RegisterUserRequest {
   email: string;
   fullName: string;
   phoneNumber: string;

@@ -12,7 +12,7 @@ import {
   View,
 } from 'src/components';
 import { colors } from 'src/design-system';
-import { RegisterRequest, SignInUserWithGoogle } from 'src/domain/auth';
+import { RegisterUserRequest, SignInUserWithGoogle } from 'src/domain/auth';
 import { errorToast, successToast } from 'src/helpers';
 import { logCrashlystics } from 'src/utils/crashlytics-handler';
 import validator from 'validator';
@@ -21,13 +21,13 @@ const SignUpScreen: FunctionComponent = (): React.JSX.Element => {
   const navigation = useNavigation();
   const [isSignInLoading, setIsSignInLoading] = useState<boolean>(false);
 
-  const [registerData, setRegisterData] = useState<RegisterRequest>({
+  const [registerData, setRegisterData] = useState<RegisterUserRequest>({
     email: '',
     phoneNumber: '',
     fullName: '',
   });
 
-  const handleInputChange = (key: string, val: string) => {
+  const handleInputChange = (key: keyof RegisterUserRequest, val: string) => {
     setRegisterData(prev => ({
       ...prev,
       [key]: val,

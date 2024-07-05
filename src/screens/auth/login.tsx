@@ -26,7 +26,7 @@ const LoginScreen: FunctionComponent = (): React.JSX.Element => {
     password: '',
   });
 
-  const handleInputChange = (key: string, val: string) => {
+  const handleInputChange = (key: keyof LoginUserRequest, val: string) => {
     setLoginData(prev => ({
       ...prev,
       [key]: val,
