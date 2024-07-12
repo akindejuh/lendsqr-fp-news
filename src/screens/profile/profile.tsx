@@ -1,22 +1,21 @@
-import React, { FunctionComponent, useState } from 'react';
+import React, { FunctionComponent } from 'react';
 import { Alert, Platform, TextStyle } from 'react-native';
 import { fonts } from 'src/assets/fonts/fonts';
 import { Button, Image, Screen, Text, View } from 'src/components';
 import { useAuth } from 'src/context/auth-config/interfaces';
-import { colors } from 'src/design-system';
 import auth from '@react-native-firebase/auth';
 import { GoogleSignin } from '@react-native-google-signin/google-signin';
 import analytics from '@react-native-firebase/analytics';
 import { images } from 'src/assets/images/images';
 import { useAppDispatch } from 'src/redux/store';
 import { IThemeState, setTheme } from 'src/redux/slice/theme/theme-slice';
+import { useCustomTheme } from 'src/context/theme/interfaces';
 
 const ProfileScreen: FunctionComponent = () => {
   const dispatch = useAppDispatch();
+  const { colors } = useCustomTheme();
   const authState = useAuth();
   const userInfo = authState?.user;
-
-  const [changedTheme, setChangedTheme] = useState<boolean>(false);
 
   const signUserOut = async () => {
     // await GoogleSignin.revokeAccess();
@@ -49,7 +48,6 @@ const ProfileScreen: FunctionComponent = () => {
 
   const onChangeTheme = (theme: IThemeState['theme']) => {
     dispatch(setTheme(theme));
-    setChangedTheme(true);
   };
 
   return (
@@ -80,7 +78,7 @@ const ProfileScreen: FunctionComponent = () => {
         borderWidth={2}
         borderRadius={200}
         padding={3}
-        borderColor={colors().primary}>
+        borderColor={colors.primary}>
         <Image
           sourceFile={
             userInfo?.photoURL
@@ -117,14 +115,7 @@ const ProfileScreen: FunctionComponent = () => {
         marginTop={70}
         marginBottom={1}
       />
-      <View
-        alignItems="flex-start"
-        height={100}
-        justifyContent="space-between"
-        // flexDirection="column"
-        // justifyContent="space-between"
-        // width={200}
-      >
+      <View alignItems="flex-start" height={100} justifyContent="space-between">
         <Button
           text="System"
           preset="link"
@@ -141,16 +132,6 @@ const ProfileScreen: FunctionComponent = () => {
           onPress={() => onChangeTheme('dark')}
         />
       </View>
-
-      {changedTheme && (
-        <Text
-          text="Please, re-start to update your theme!"
-          fontSize={15}
-          fontFamily={fonts.primaryFont_400}
-          marginTop={10}
-          color={colors().primary}
-        />
-      )}
     </Screen>
   );
 };

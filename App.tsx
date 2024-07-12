@@ -27,6 +27,7 @@ import { View } from 'src/components';
 import { setupGoogleSignIn } from 'src/configs/google';
 import { colors } from 'src/design-system';
 import { NotificationProvider } from 'src/context/notifications/notifications';
+import { CustomThemeProvider } from 'src/context/theme/theme';
 
 const App: FunctionComponent = () => {
   const navigationRef: any = useRef();
@@ -48,45 +49,44 @@ const App: FunctionComponent = () => {
       <AuthConfigProvider>
         <CrashReportProvider>
           <RemoteConfigProvider>
-            <SafeAreaProvider>
-              <NavigationContainer
-                ref={navigationRef}
-                onReady={() => {
-                  Platform.OS === 'android' && SplashScreen.hide();
-                  routeNameRef.current =
-                    navigationRef.current.getCurrentRoute().name;
-                }}
-                onStateChange={async () => {
-                  const previousRouteName = routeNameRef.current;
-                  const currentRouteName =
-                    navigationRef.current.getCurrentRoute().name;
+            <Provider store={store}>
+              <PersistGate
+                loading={
+                  <View flex={1} justifyContent="center" alignItems="center">
+                    <ActivityIndicator color={colors.dark.grayText} />
+                  </View>
+                }
+                persistor={persistor}
+              />
+              <CustomThemeProvider>
+                <SafeAreaProvider>
+                  <NavigationContainer
+                    ref={navigationRef}
+                    onReady={() => {
+                      Platform.OS === 'android' && SplashScreen.hide();
+                      routeNameRef.current =
+                        navigationRef.current.getCurrentRoute().name;
+                    }}
+                    onStateChange={async () => {
+                      const previousRouteName = routeNameRef.current;
+                      const currentRouteName =
+                        navigationRef.current.getCurrentRoute().name;
 
-                  if (previousRouteName !== currentRouteName) {
-                    await analytics().logScreenView({
-                      screen_name: currentRouteName,
-                      screen_class: currentRouteName,
-                    });
-                  }
-                  routeNameRef.current = currentRouteName;
-                }}>
-                <Provider store={store}>
-                  <PersistGate
-                    loading={
-                      <View
-                        flex={1}
-                        justifyContent="center"
-                        alignItems="center">
-                        <ActivityIndicator color={colors().grayText} />
-                      </View>
-                    }
-                    persistor={persistor}
-                  />
-                  <NotificationProvider>
-                    <RootStack />
-                  </NotificationProvider>
-                </Provider>
-              </NavigationContainer>
-            </SafeAreaProvider>
+                      if (previousRouteName !== currentRouteName) {
+                        await analytics().logScreenView({
+                          screen_name: currentRouteName,
+                          screen_class: currentRouteName,
+                        });
+                      }
+                      routeNameRef.current = currentRouteName;
+                    }}>
+                    <NotificationProvider>
+                      <RootStack />
+                    </NotificationProvider>
+                  </NavigationContainer>
+                </SafeAreaProvider>
+              </CustomThemeProvider>
+            </Provider>
           </RemoteConfigProvider>
         </CrashReportProvider>
       </AuthConfigProvider>

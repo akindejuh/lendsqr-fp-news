@@ -1,8 +1,8 @@
 import React from 'react';
 import { Text, View } from '..';
-import { colors } from 'src/design-system';
 import { DividerProps } from './divider.props';
 import { TextStyle, ViewStyle } from 'react-native';
+import { useCustomTheme } from 'src/context/theme/interfaces';
 
 export function Divider({
   text,
@@ -10,15 +10,16 @@ export function Divider({
   dividerStyle,
   ...rest
 }: DividerProps): React.JSX.Element {
+  const { colors } = useCustomTheme();
   const overrideTextStyle: TextStyle = {
-    color: colors().grayText,
+    color: colors.grayText,
     marginHorizontal: 10,
     ...textStyle,
   };
 
   const overrideDividerStyle: ViewStyle = {
     height: 2,
-    backgroundColor: colors().inputBackground,
+    backgroundColor: colors.inputBackground,
     flex: 1,
     ...dividerStyle,
   };

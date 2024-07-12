@@ -21,8 +21,6 @@ import ProfileScreen from 'src/screens/profile/profile';
 import { BottomTabNavigationOptions } from '@react-navigation/bottom-tabs';
 import { Icon, Image, View } from 'src/components';
 import { images } from 'src/assets/images/images';
-import { colors } from 'src/design-system';
-import { ViewStyle } from 'react-native';
 
 interface Route<List extends Record<string, object | undefined>> {
   name: keyof List;
@@ -58,12 +56,7 @@ export const homeTabRoutes: (
         tabBarIcon: ({ color }) => {
           return (
             <>
-              <Icon
-                name="home"
-                color={colors().background}
-                style={{ color } as ViewStyle}
-                size={40}
-              />
+              <Icon name="home" color={color} size={40} />
             </>
           );
         },

@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
 import { TextInput, TextStyle, View, ViewStyle } from 'react-native';
-import { colors } from 'src/design-system';
 import { TextFieldProps } from './text-field.props';
 import { Icon } from '../icon/icon';
 import { Button } from '../button/button';
 import { fonts } from 'src/assets/fonts/fonts';
+import { useCustomTheme } from 'src/context/theme/interfaces';
 
 const defaultHeight = 53;
 export function TextField({
@@ -17,13 +17,14 @@ export function TextField({
   editable = true,
   ...props
 }: TextFieldProps): React.JSX.Element {
+  const { colors } = useCustomTheme();
   const [showPwd, setShowPwd] = useState<boolean>(false);
 
   const CONTAINER: ViewStyle = {
     alignItems: 'center',
     flexDirection: 'row',
     borderRadius: props.borderRadius || 8,
-    backgroundColor: colors().inputBackground,
+    backgroundColor: colors.inputBackground,
     minHeight: defaultHeight,
     opacity: editable ? 1 : 0.5,
     paddingHorizontal: 12,
@@ -37,7 +38,7 @@ export function TextField({
     textAlignVertical: props.multiline ? 'top' : 'center',
     marginVertical: props.multiline ? 3 : 0,
     borderWidth: 0,
-    color: colors().grayText,
+    color: colors.grayText,
     minHeight: defaultHeight,
     ...textStyle,
   };
@@ -48,9 +49,7 @@ export function TextField({
       <TextInput
         style={TEXT_INPUT}
         placeholder={props.placeholder || 'Start typing...'}
-        placeholderTextColor={
-          props.placeholderTextColor || colors().inputPLText
-        }
+        placeholderTextColor={props.placeholderTextColor || colors.inputPLText}
         value={value}
         secureTextEntry={isPassword ? !showPwd : false}
         onChangeText={(text: string) => {
@@ -71,7 +70,7 @@ export function TextField({
         <Button
           justifyContent="center"
           alignItems="center"
-          backgroundColor={colors().transparent}
+          backgroundColor={colors.transparent}
           onPress={() => setShowPwd(!showPwd)}
           height={defaultHeight}
           marginLeft={10}
@@ -79,8 +78,8 @@ export function TextField({
             <Icon
               size={24}
               name={showPwd ? 'pwd-off' : 'pwd-on'}
-              color={colors().inputBackground}
-              stroke={colors().grayText}
+              color={colors.inputBackground}
+              stroke={colors.grayText}
             />
           }
         />

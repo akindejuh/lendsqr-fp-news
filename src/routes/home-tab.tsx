@@ -1,29 +1,17 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { HomeTabParamList } from './types';
 import { homeTabRoutes } from './routes';
-import { colors } from 'src/design-system';
 import { useAuth } from 'src/context/auth-config/interfaces';
-import { Appearance, Platform } from 'react-native';
+import { Platform } from 'react-native';
+import { useCustomTheme } from 'src/context/theme/interfaces';
 
 const BottomTab = createBottomTabNavigator<HomeTabParamList>();
 
 export default function HomeTab() {
   const authState = useAuth();
+  const { colors } = useCustomTheme();
   const isIOS = Platform.OS === 'ios';
-
-  const [cScheme, setCScheme] = useState(Appearance.getColorScheme());
-  useEffect(() => {
-    const subscription = Appearance.addChangeListener(({ colorScheme }) => {
-      setCScheme(colorScheme);
-    });
-
-    return () => {
-      subscription.remove();
-    };
-  }, []);
-
-  const themeColors = colors(cScheme);
 
   return (
     <BottomTab.Navigator
@@ -31,12 +19,12 @@ export default function HomeTab() {
       screenOptions={{
         headerShown: false,
         tabBarShowLabel: false,
-        tabBarActiveTintColor: themeColors.primary,
+        tabBarActiveTintColor: colors.primary,
         tabBarStyle: {
-          backgroundColor: themeColors.background,
+          backgroundColor: colors.background,
           height: isIOS ? 80 : 63,
           paddingTop: isIOS ? 10 : 0,
-          shadowColor: themeColors.grayText,
+          shadowColor: colors.grayText,
           shadowOffset: {
             width: 2,
             height: 2,

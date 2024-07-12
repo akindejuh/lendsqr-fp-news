@@ -4,14 +4,11 @@ import { RootStackParamList } from './types';
 import AuthStack from './auth-stack';
 import AppStack from './app-stack';
 import { useAuth } from 'src/context/auth-config/interfaces';
-import useAppearance from 'src/hooks/use-appearance';
 
 const Root = createNativeStackNavigator<RootStackParamList>();
 
 export default function RootStack(): React.JSX.Element | null {
   const authState = useAuth();
-
-  useAppearance();
 
   return (
     <Root.Navigator

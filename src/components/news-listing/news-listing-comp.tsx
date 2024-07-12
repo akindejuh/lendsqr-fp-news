@@ -1,14 +1,15 @@
 import React from 'react';
 import { useNavigation } from '@react-navigation/native';
 import { UINewsListing } from 'src/domain/news';
-import { Text, Button, View, Image } from '..';
-import { colors } from 'src/design-system';
+import { Text, Button, View, Image } from 'src/components';
 import { errorToast } from 'src/helpers';
 import { fonts } from 'src/assets/fonts/fonts';
 import { formatDate } from 'src/utils/format-date';
+import { useCustomTheme } from 'src/context/theme/interfaces';
 
 export function NewsListingComp(props: UINewsListing): React.JSX.Element {
   const navigation = useNavigation();
+  const { colors } = useCustomTheme();
 
   const navToNewsDetailsScreen = (news_id: string) => {
     if (news_id) {
@@ -31,7 +32,7 @@ export function NewsListingComp(props: UINewsListing): React.JSX.Element {
       onPress={() => navToNewsDetailsScreen(props.id)}
       borderRadius={8}
       height={'auto'}
-      backgroundColor={colors().transparent}>
+      backgroundColor={colors.transparent}>
       <View flexDirection="row" justifyContent="space-between">
         <View flex={1} paddingHorizontal={10} paddingVertical={5}>
           <Text

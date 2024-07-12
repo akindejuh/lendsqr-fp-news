@@ -16,7 +16,6 @@ import {
   TextField,
   View,
 } from 'src/components';
-import { colors } from 'src/design-system';
 import {
   getNewsListingState,
   getNewsListingThunk,
@@ -25,9 +24,11 @@ import {
 import { useAppDispatch, useAppSelector } from 'src/redux/store';
 import crashlytics from '@react-native-firebase/crashlytics';
 import { logCrashlystics } from 'src/utils/crashlytics-handler';
+import { useCustomTheme } from 'src/context/theme/interfaces';
 
 const NewsListingScreen: FunctionComponent = (): React.JSX.Element => {
   const dispatch = useAppDispatch();
+  const { colors } = useCustomTheme();
 
   const { items, isError, isLoading, page } =
     useAppSelector(getNewsListingState);
@@ -96,7 +97,7 @@ const NewsListingScreen: FunctionComponent = (): React.JSX.Element => {
   const renderListFooterComp = (): React.JSX.Element => {
     return (
       <View>
-        <ActivityIndicator color={colors().grayText} />
+        <ActivityIndicator color={colors.grayText} />
       </View>
     );
   };
@@ -151,7 +152,7 @@ const NewsListingScreen: FunctionComponent = (): React.JSX.Element => {
               fontFamily={fonts.primaryFont_400}
             />
           </View>
-          <ActivityIndicator color={colors().grayText} style={LOAD_STATE} />
+          <ActivityIndicator color={colors.grayText} style={LOAD_STATE} />
         </View>
       )}
 

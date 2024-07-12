@@ -22,16 +22,17 @@ import {
   ViewStyle,
   useWindowDimensions,
 } from 'react-native';
-import { colors } from 'src/design-system';
 import { fonts } from 'src/assets/fonts/fonts';
 import RenderHTML, { RenderHTMLSourceProps } from 'react-native-render-html';
 import { formatDate } from 'src/utils/format-date';
 import Share from 'react-native-share';
 import { infoToast, successToast } from 'src/helpers';
 import { recordCrashlyticsError } from 'src/utils/crashlytics-handler';
+import { useCustomTheme } from 'src/context/theme/interfaces';
 
 const NewsDetailsScreen: FunctionComponent = (): React.JSX.Element => {
   const dispatch = useAppDispatch();
+  const { colors } = useCustomTheme();
 
   const route = useRoute<RouteProp<AppStackParamList, 'NewsDetailsScreen'>>();
   const { news_id } = route.params;
@@ -59,7 +60,7 @@ const NewsDetailsScreen: FunctionComponent = (): React.JSX.Element => {
 
   const contentStyle = {
     p: {
-      color: colors().grayText,
+      color: colors.grayText,
       fontFamily: fonts.primaryFont_400,
       marginTop: 0,
     },
@@ -101,6 +102,10 @@ const NewsDetailsScreen: FunctionComponent = (): React.JSX.Element => {
     dispatch(getNewsDetailThunk({ news_id }));
   }, [dispatch, news_id]);
 
+  const ICON = {
+    color: colors.inputPLText,
+  } as ViewStyle;
+
   return (
     <Screen baseAllowance={10}>
       <View
@@ -113,7 +118,7 @@ const NewsDetailsScreen: FunctionComponent = (): React.JSX.Element => {
 
         <Button
           onPress={shareNews}
-          backgroundColor={colors().transparent}
+          backgroundColor={colors.transparent}
           width={50}
           alignItems="flex-end"
           children={<Icon name="share" size={20} style={ICON} />}
@@ -134,7 +139,7 @@ const NewsDetailsScreen: FunctionComponent = (): React.JSX.Element => {
 
       {isLoading && !isError && (
         <View flex={1} justifyContent="center" alignItems="center">
-          <ActivityIndicator color={colors().grayText} />
+          <ActivityIndicator color={colors.grayText} />
         </View>
       )}
 
@@ -170,10 +175,10 @@ const NewsDetailsScreen: FunctionComponent = (): React.JSX.Element => {
               text={author}
               fontSize={14}
               fontFamily={fonts.primaryFont_500}
-              color={colors().secondary}
+              color={colors.secondary}
             />
             <View flexDirection="row" alignItems="center">
-              <Text text={'Score: '} fontSize={14} color={colors().linkText} />
+              <Text text={'Score: '} fontSize={14} color={colors.linkText} />
               <Text
                 text={`${Math.round(audience_score)}%`}
                 fontSize={14}
@@ -216,7 +221,3 @@ const NewsDetailsScreen: FunctionComponent = (): React.JSX.Element => {
 };
 
 export default NewsDetailsScreen;
-
-const ICON = {
-  color: colors().inputPLText,
-} as ViewStyle;

@@ -11,7 +11,7 @@ import {
   TextField,
   View,
 } from 'src/components';
-import { colors } from 'src/design-system';
+import { useCustomTheme } from 'src/context/theme/interfaces';
 import { RegisterUserRequest, SignInUserWithGoogle } from 'src/domain/auth';
 import { errorToast, successToast } from 'src/helpers';
 import { logCrashlystics } from 'src/utils/crashlytics-handler';
@@ -19,6 +19,7 @@ import validator from 'validator';
 
 const SignUpScreen: FunctionComponent = (): React.JSX.Element => {
   const navigation = useNavigation();
+  const { colors } = useCustomTheme();
   const [isSignInLoading, setIsSignInLoading] = useState<boolean>(false);
 
   const [registerData, setRegisterData] = useState<RegisterUserRequest>({
@@ -87,12 +88,8 @@ const SignUpScreen: FunctionComponent = (): React.JSX.Element => {
     return (
       <Screen preset="fixed">
         <View flex={1} justifyContent="center" alignItems="center">
-          <Text
-            text="Signing In..."
-            marginBottom={4}
-            color={colors().linkText}
-          />
-          <ActivityIndicator color={colors().grayText} />
+          <Text text="Signing In..." marginBottom={4} color={colors.linkText} />
+          <ActivityIndicator color={colors.grayText} />
         </View>
       </Screen>
     );
@@ -173,14 +170,14 @@ const SignUpScreen: FunctionComponent = (): React.JSX.Element => {
       <Divider marginTop={30} marginBottom={20} />
 
       <Button
-        backgroundColor={colors().transparent}
+        backgroundColor={colors.transparent}
         borderWidth={1}
         borderRadius={6}
         height={50}
         justifyContent="center"
         alignItems="center"
         onPress={initGoogleSignUpUser}
-        borderColor={colors().inputBackground}
+        borderColor={colors.inputBackground}
         flexDirection="row">
         <Icon name="google-logo" size={24} />
         <Text text="Sign up with Google" marginLeft={5} />
